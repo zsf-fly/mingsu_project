@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.HouseInfoMapper">
+
+
+
+
+    <!--<select id="getAllUserInfo" resultType="com.qf.pojo.UserInfo">-->
+    <!--select * from userinfo where status=1-->
+    <!--</select>-->
+    <select id="getHouseInfo" resultType="com.qf.vo.HouseInfoVO" >
+       select a.h_price,b.sketch,c.picture1 from houses a,house_details b,house_picture c where a.houseid=b.houseid and a.houseid=c.houseid
+    </select>
+
+</mapper>

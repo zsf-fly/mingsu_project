@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <head>
+        <meta charset="GB18030">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <style>
+            .tree li {
+                list-style-type: none;
+                cursor:pointer;
+            }
+            table tbody tr:nth-child(odd){background:#F4F4F4;}
+            table tbody td:nth-child(even){color:#C00;}
+        </style>
+    </head>
+</head>
+
+<body>
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="script/docs.min.js"></script>
+<!-- 头部 start -->
+
+<div class="login_out">
+    <a href="main.html">首页</a>
+    <a href="login.html">登录</a>
+    <a href="register.html">注册</a>
+    <a href="myfavorite.html" class="collection">我的收藏</a>
+    <a href="javascript:location.href='exitServlet';">退出</a>
+    <a href="login.html">出租房源</a>
+    <a href="login.html">服务</a>
+</div>
+<header id="header">
+    <div class="top_banner">
+        <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3742233776,2068776894&fm=26&gp=0.jpg">
+        <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1018153081,1889499588&fm=26&gp=0.jpg">
+    </div>
+    <div class="shortcut">
+        <!-- 未登录状态  -->
+
+        <!-- 登录状态  -->
+        <div class="login">
+
+            <span id="span_username"></span>
+            <!--<a href="myfavorite.html" class="collection">我的收藏</a>-->
+            <!--<a href="javascript:location.href='exitServlet';">退出</a>-->
+        </div>
+    </div>
+    <div class="header_wrap">
+        <div class="topbar">
+            <!--<div class="logo">-->
+            <!--<a href="/"><img src="images/logo.jpg" alt=""></a>-->
+            <!--</div>-->
+            <div class="search">
+                <select class="search_input" autocomplete="off"   id="options"  >
+                    <option >请选择</option>
+                    <option  id="one" value="国内游">西安</option>
+                    <option id="two" value="境外游">成都</option>
+                    <option id="three" value="酒店">重庆</option>
+                    <option id="four" value="景点">上海</option>
+
+                </select>
+                <!--<input name=""  id="find"  type="text" placeholder="请输入关键字" class="search_input" autocomplete="off">-->
+                <!--<span  onclick="search()" class="search-button" id="search">搜索</span>-->
+                <div class="input-group">
+                    <div class="input-group-addon">名称</div>
+                    <input class="form-control has-success" type="text" placeholder="请输入查询名称" id="usernameInput">
+                    <div class="input-group-addon">位置</div>
+                    <input class="form-control has-success" type="text" placeholder="请输入查询位置" id="emailInput">
+                </div>
+
+            </div>
+            <div class="table-responsive">
+                <table class="table  table-bordered" id="dataTable">
+                    <!--<thead>-->
+                    <!--<tr >-->
+                        <!--<th width="30">#</th>-->
+                        <!--<th width="30"><input type="checkbox"></th>-->
+                        <!--<th>图片</th>-->
+                        <!--<th>位置</th>-->
+                        <!--<th>描述</th>-->
+                        <!--<th>价格</th>-->
+                        <!--<th width="100">评价</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody>-->
+                    <!--<tr>-->
+                        <!--<td>1</td>-->
+                        <!--<td><input type="checkbox"></td>-->
+                        <!--<td>Lorem</td>-->
+                        <!--<td>ipsum</td>-->
+                        <!--<td>dolor</td>-->
+                        <!--<td>dolor</td>-->
+                        <!--<td>dolor</td>-->
+                        <!--&lt;!&ndash;<td>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<button type="button" class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<button type="button" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                    <!--</tr>-->
+
+                    <!--</tbody>-->
+                    <tfoot>
+                    <tr >
+                        <td colspan="6" align="center">
+                            <ul class="pagination">
+                                <li class="disabled"><a href="#">上一页</a></li>
+                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">下一页</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    </tfoot>
+                </table>
+            </div>
+            <!--<div class="hottel">-->
+            <!--<div class="hot_pic">-->
+            <!--<img src="images/hot_tel.jpg" alt="">-->
+            <!--</div>-->
+            <!--<div class="hot_tel">-->
+            <!--<p class="hot_time">客服热线(9:00-6:00)</p>-->
+            <!--<p class="hot_num">400-618-9090</p>-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</header>
+<!-- 头部 end -->
+<!-- 首页导航 -->
+<!--<div class="navitem">-->
+<!--<ul class="nav">-->
+<!--<li class="nav-active"><a href="index.html">首页</a></li>-->
+<!--<li><a href="china.html">出租房源</a></li>-->
+<!--<li><a href="foreign.html">境外游</a></li>-->
+<!--<li><a href="scenic.html">景点</a></li>-->
+<!--<li><a href="hotel.html">酒店</a></li>-->
+<!--<li><a href="service.html">服务</a></li>-->
+<!--<li><a href="personal.html">个人中心</a></li>-->
+<!--<li><a href="about.html">关于本站</a></li>-->
+<!--<li><a href="favoriterank.html">热门线路</a></li>-->
+<!--</ul>-->
+<!--</div>-->
+
+<script>
+    function search(){
+        var selected = $("#options option:selected").val();
+        if(selected=="国内游"){
+            window.location.href="chinasearch.html";
+
+        }
+        if(selected=="境外游"){
+
+            window.location.href="foreignsearch.html";
+
+
+        }
+        if(selected=="酒店"){
+
+            window.location.href="hotelsearch.html";
+
+
+        }
+        if(selected=="景点"){
+            var value = $("#find").val();
+            window.location.href="scenicsearch.html";
+
+        }
+    }
+</script>
+
+<script>
+    function initPage(){
+        $.ajax({
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType:"json",
+            //请求地址
+            //url : "http://localhost:8080//getHousePicture",
+            url : "http://localhost:8080//getHouseInfo",
+            //数据，json字符串
+            // data : JSON.stringify(
+            //     {
+            //         "username": $("#usernameInput").val(),
+            //         "email": $("#emailInput").val()
+            //     }
+            // ),
+            //请求成功
+            success : function(result) {
+                // $("#dataTable tbody").html("");
+                //  console.log(result);
+                //2.将数据填充到table中
+                $(result).each(function(index,item){
+                    console.log(item);
+                    var trStr = "<tr>";
+                    //获取id并拼接
+
+                    trStr+="<td><img src=\""+item.picture1+"\"></td>";
+                    trStr+="<td>"+item.h_price+"</td>";
+                    trStr+="<td>"+item.sketch+"</td>";
+
+                    trStr+="</tr>";
+                    $("#dataTable").append(trStr);
+
+                });
+
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+    initPage();
+</script>
+</body>
+</html>
