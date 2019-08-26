@@ -1,4 +1,10 @@
 package com.qf.dao;
 
-public class AdministratorMapper {
+import com.qf.dto.LoginInfo;
+import com.qf.pojo.Administrator;
+
+
+public interface AdministratorMapper {
+
+    public Administrator loginValidation(LoginInfo loginInfo);
 }

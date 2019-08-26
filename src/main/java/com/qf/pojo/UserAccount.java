@@ -5,6 +5,7 @@ public class UserAccount {
     String username;
     String password;
     final int identity=1;
+    String  telphone;
 
     public int getUserid() {
         return userid;
@@ -29,9 +30,16 @@ public class UserAccount {
     public void setPassword(String password) {
         this.password = password;
     }
-
     public int getIdentity() {
         return identity;
+    }
+
+    public String getTelphone() {
+        return telphone;
+    }
+
+    public void setTelphone(String telphone) {
+        this.telphone = telphone;
     }
 
     @Override
@@ -40,6 +48,8 @@ public class UserAccount {
                 "userid=" + userid +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", identity=" + identity +
+                ", telphone='" + telphone + '\'' +
                 '}';
     }
 }

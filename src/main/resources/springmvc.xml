@@ -33,7 +33,7 @@
         <!--配置登录拦截器-->
         <mvc:interceptor>
             <mvc:mapping path="/*.html"/>
-            <bean class="com.qf.filter.loginFilter"/>
+            <bean class="com.qf.filter.LoginFilter"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
