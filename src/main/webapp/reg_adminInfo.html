@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="GB18030">
+    <title>添加个人信息</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keys" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.css">
+    <!--<link rel="stylesheet" href="bootstrap/js/bootstrap.min.js">-->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="dropzone/basic.min.css" />
+    <link rel="stylesheet" href="dropzone/dropzone.min.css" />
+    <script src="dropzone/dropzone.min.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <div><a class="navbar-brand" style="font-size:32px;" href="#">名宿后台管理系统</a></div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <form class="form-signin" role="form">
+        <h2 class="form-signin-heading"><i class="glyphicon glyphicon-log-in"></i>个人信息填写</h2>
+        <div class="form-group has-success has-feedback">
+            <input type="text" class="form-control" id="admin_name" placeholder="请输入你的姓名" autofocus><!--
+			<span class="glyphicon glyphicon-user form-control-feedback"></span>-->
+        </div>
+        <div class="form-group has-success has-feedback">
+            <input type="text" class="form-control" id="work_number" placeholder="请输入你的工号" style="margin-top:10px;"><!--
+			<span class="glyphicon glyphicon-lock form-control-feedback"></span>-->
+        </div>
+        <div class="form-group has-success has-feedback">
+            <input type="text" class="form-control" id="admin_phone" placeholder="请输入你的手机号码" style="margin-top:10px;"><!--
+			<span class="glyphicon glyphicon glyphicon-envelope form-control-feedback"></span>-->
+        </div>
+        <a class="btn btn-lg btn-success btn-block" onclick="addmessage()" >确认</a>
+    </form>
+</div>
+
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+    function addmessage() {
+        $.ajax({
+            //请求方式
+            type : "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url : "http://localhost:8080/addAdminInfo",
+            //数据，json字符串
+            data : JSON.stringify({
+                "adminname":$("#admin_name").val(),
+                "worknumber":$("#work_number").val(),
+                "adminphone":$("#admin_phone").val()
+            }),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+                if (result){
+                    window.location.href="admin_info.html";
+                } else {
+                    alert("信息添加失败");
+                }
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+</script>
+</body>
+</html>

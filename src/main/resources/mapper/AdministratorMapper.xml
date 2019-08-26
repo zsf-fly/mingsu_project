@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.AdministratorMapper">
+
+    <!--登录查询管理员-->
+    <select id="loginValidation" resultType="com.qf.pojo.Administrator" parameterType="com.qf.dto.LoginInfo">
+        select * from administrator where adminname=#{name} and adminpassword=#{password}
+    </select>
+
+    <!--获取所有二级管理员的信息-->
+    <select id="listAllAdministrator" resultType="com.qf.vo.AdministratorInfoVO">
+        select a1.adminname,a2.* from administrator a1,admininfo a2,role r,administrator_role ar
+        where a1.adminid=a2.adminid and a1.adminid=ar.adminid and r.roleid=ar.roleid and r.roleid!=1
+    </select>
+
+    <!--修改信息-->
+    <update id="changemanage" parameterType="com.qf.vo.AdministratorInfoVO">
+        update admininfo set admin_name=#{admin_name},work_number=#{weor_number},admin_phone=#{admin_phone} where adminid=#{adminid}
+    </update>
+
+    <!--根据id查询信息,展示用于修改-->
+    <select id="selectAdministratorById" resultType="com.qf.vo.AdministratorInfoVO" parameterType="int">
+        select a1.adminname,a2.* from administrator a1,admininfo a2 where a1.adminid=a2.adminid and a2.adminid=#{adminid}
+    </select>
+</mapper>
