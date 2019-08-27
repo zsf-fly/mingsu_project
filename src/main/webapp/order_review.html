@@ -2,7 +2,7 @@
 <html lang="GB18030">
 <head>
     <meta charset="GB18030">
-    <title>管理员账号管理</title>
+    <title>订单查询</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -50,8 +50,8 @@
                                 <input class="form-control has-success" type="text" placeholder="房客姓名" id="user_name">
                             </div>
                             <div class="input-group">
-                                <div class="input-group-addon">房屋地址</div>
-                                <input class="form-control has-success" type="text" placeholder="房客姓名" id="address">
+                                <div class="input-group-addon">地址</div>
+                                <input class="form-control has-success" type="text" placeholder="房屋地址" id="address">
                             </div>
                         </div>
                         <button type="button" class="btn btn-warning" onclick="checkorders()"><i class="glyphicon glyphicon-search" ></i> 查询</button>
@@ -143,7 +143,7 @@
                 if (pageNum == 1 && result.pages == 1) {
                     var splitePageStr = "<li class=\"disabled\"><a href=\"#\">上一页</a></li>";
                     for (var i = 1; i <= result.pages; i++) {
-                        splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + i + "\">" + i + "</a></li>";
+                        splitePageStr += "<li><a href=\"order_review.html?pageNum=" + i + "\">" + i + "</a></li>";
                     }
                     splitePageStr += "<li class=\"disabled\"><a href=\"#\">下一页</a></li>";
                     $(".pagination").html("");
@@ -151,23 +151,23 @@
                 }  else if (pageNum==1) {
                     var splitePageStr = "<li class=\"disabled\"><a href=\"#\">上一页</a></li>";
                     for (var i = 1; i <= result.pages; i++) {
-                        splitePageStr += "<li><a href=\"Badmin_manage.html?pageNum=" + i + "\">" + i + "</a></li>";
+                        splitePageStr += "<li><a href=\"order_review.html?pageNum=" + i + "\">" + i + "</a></li>";
                     }
-                    splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">下一页</a></li>";
+                    splitePageStr += "<li><a href=\"order_review.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">下一页</a></li>";
                     $(".pagination").html("");
                     $(".pagination").append(splitePageStr);
                 } else if (pageNum == result.pages) {
-                    var splitePageStr = "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum)-1) + "\">上一页</a></li>";
+                    var splitePageStr = "<li><a href=\"order_review.html?pageNum=" + (parseInt(pageNum)-1) + "\">上一页</a></li>";
                     for (var i = 1; i <= result.pages; i++) {
-                        splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + i + "\">" + i + "</a></li>";
+                        splitePageStr += "<li><a href=\"order_review.html?pageNum=" + i + "\">" + i + "</a></li>";
                     }
                     splitePageStr += "<li class=\"disabled\"><a href=\"#\">下一页</a></li>";
                     $(".pagination").html("");
                     $(".pagination").append(splitePageStr);
                 } else {
-                    var splitePageStr = "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum)-1) + "\">上一页</a></li>";
+                    var splitePageStr = "<li><a href=\"order_review.html?pageNum=" + (parseInt(pageNum)-1) + "\">上一页</a></li>";
                     for (var i = 1; i <= result.pages; i++) {
-                        splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">" + i + "</a></li>";
+                        splitePageStr += "<li><a href=\"order_review.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">" + i + "</a></li>";
                     }
                     splitePageStr += "<li><a href=\"#\">下一页</a></li>";
                     $(".pagination").html("");
@@ -230,7 +230,7 @@
                 if (pageNum == 1 && result.pages == 1) {
                     var splitePageStr = "<li class=\"disabled\"><a href=\"#\">上一页</a></li>";
                     for (var i = 1; i <= result.pages; i++) {
-                    splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + i + "\">" + i + "</a></li>";
+                    splitePageStr += "<li><a href=\"order_review.html?pageNum=" + i + "\">" + i + "</a></li>";
                 }
                     splitePageStr += "<li class=\"disabled\"><a href=\"#\">下一页</a></li>";
                     $(".pagination").html("");
@@ -238,23 +238,23 @@
                 } else if (pageNum==1) {
                     var splitePageStr = "<li class=\"disabled\"><a href=\"#\">上一页</a></li>";
                     for (var i = 1; i <= result.pages; i++) {
-                    splitePageStr += "<li><a href=\"Badmin_manage.html?pageNum=" + i + "\">" + i + "</a></li>";
+                    splitePageStr += "<li><a href=\"order_review.html?pageNum=" + i + "\">" + i + "</a></li>";
                 }
-                    splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">下一页</a></li>";
+                    splitePageStr += "<li><a href=\"order_review.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">下一页</a></li>";
                     $(".pagination").html("");
                     $(".pagination").append(splitePageStr);
                 } else if (pageNum == result.pages) {
-                    var splitePageStr = "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum)-1) + "\">上一页</a></li>";
+                    var splitePageStr = "<li><a href=\"order_review.html?pageNum=" + (parseInt(pageNum)-1) + "\">上一页</a></li>";
                     for (var i = 1; i <= result.pages; i++) {
-                    splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + i + "\">" + i + "</a></li>";
+                    splitePageStr += "<li><a href=\"order_review.html?pageNum=" + i + "\">" + i + "</a></li>";
                 }
                     splitePageStr += "<li class=\"disabled\"><a href=\"#\">下一页</a></li>";
                     $(".pagination").html("");
                     $(".pagination").append(splitePageStr);
                 } else {
-                    var splitePageStr = "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum)-1) + "\">上一页</a></li>";
+                    var splitePageStr = "<li><a href=\"order_review.html?pageNum=" + (parseInt(pageNum)-1) + "\">上一页</a></li>";
                     for (var i = 1; i <= result.pages; i++) {
-                    splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">" + i + "</a></li>";
+                    splitePageStr += "<li><a href=\"order_review.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">" + i + "</a></li>";
                 }
                     splitePageStr += "<li><a href=\"#\">下一页</a></li>";
                     $(".pagination").html("");

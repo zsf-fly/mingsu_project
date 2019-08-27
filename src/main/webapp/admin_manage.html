@@ -145,7 +145,7 @@
                 }  else if (pageNum==1) {
                     var splitePageStr = "<li class=\"disabled\"><a href=\"#\">上一页</a></li>";
                     for (var i = 1; i <= result.pages; i++) {
-                        splitePageStr += "<li><a href=\"Badmin_manage.html?pageNum=" + i + "\">" + i + "</a></li>";
+                        splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + i + "\">" + i + "</a></li>";
                     }
                     splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">下一页</a></li>";
                     $(".pagination").html("");
