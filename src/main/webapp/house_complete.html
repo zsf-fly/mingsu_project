@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>完成发布</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <style>
+
+        .nav_info{
+            height:80px;
+        }
+        .house_info{
+            width: 400px;
+        }
+        .nav_logo{
+            float: left;
+        }
+        .nav_logo img{
+            height: 60px;
+            width: 80px;
+            display: block;
+            fill: currentColor;
+            margin: 8px 30px;
+        }
+        .nav_text{
+            float: right;
+            font-size: 18px;
+        }
+        .nav_line {
+            background-color: #008489;
+            height: 2px;
+        }
+        a{
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .d6{
+            width: 520px;
+            margin: 30px 30px 30px 30px;
+        }
+        .d6_1{
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .d1_24{
+            padding: 10px 30px 16px 30px;
+            width: 600px;
+        }
+        .d1_24:before {
+            content: " ";
+            display: table;
+        }
+        .d1_25{
+            height: 1px;
+            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08);
+            position: relative;
+            padding-bottom: 16px;
+            width: 520px;
+        }
+        .d1_25::before {
+            content: '';
+            height: 18px;
+            box-shadow: 0 -9px 15px -5px rgba(0, 0, 0, 0.09);
+            border-radius: 75%;
+            display: block;
+            position: absolute;
+            width: 100%;
+            z-index: -1;
+        }
+        .d1_26{
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+        .d1_28{
+            display: table;
+            width: 100%;
+            border-spacing: 0px;
+            height: 100%;
+        }
+        .d1_35{
+            display: table-cell;
+            width: 35%;
+            vertical-align: middle;
+        }
+        .d1_36{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .d1_next{
+            background-color: rgb(51, 122, 183);
+            border: none;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div class="nav_info">
+    <div class="house_info">
+        <div class="nav_logo">
+            <img src="images/pandalogo.jpg">
+        </div>
+        <div class="nav_text">
+            <h2>填写房屋基本信息</h2>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-pills nav-justified">
+    <li><a href="">房屋信息</a></li>
+    <li><a href="">房屋配置</a></li>
+    <li><a href="">房屋位置</a></li>
+    <li><a href="">房屋详情</a></li>
+    <li><a href="">便利设施</a></li>
+    <li class="active"><a href="">完成发布</a></li>
+</ul>
+<div class="nav_line" style="width: 100%; left: 0%; max-width: 100%;"></div>
+
+<div class="d6">
+    <div><img src="images/jiantou.jpg"></div>
+    <div class="d6_1">您的房源已提交成功！请耐心等待审核。</div>
+</div>
+
+<div class="d1_24">
+    <div>
+        <div class="d1_25"></div>
+    </div>
+    <div class="d1_26" style="margin: 16px;">
+        <div class="d1_28">
+            <div class="d1_35"></div>
+            <div class="d1_36">
+                <a class="d1_next" href="main.html">返回首页</a></div>
+        </div>
+    </div>
+</div>
+
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

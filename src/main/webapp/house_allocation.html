@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>房屋配置</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <style>
+        .nav_info{
+            height:80px;
+        }
+        .house_info{
+            width: 400px;
+        }
+        .nav_logo{
+            float: left;
+        }
+        .nav_logo img{
+            height: 60px;
+            width: 80px;
+            display: block;
+            fill: currentColor;
+            margin: 8px 30px;
+        }
+        .nav_text{
+            float: right;
+            font-size: 18px;
+        }
+        .nav_line {
+            background-color: #008489;
+            height: 2px;
+        }
+        a{
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .d2_1{
+            font-size: 19px;
+            padding: 15px 30px 10px 30px;
+        }
+        .d2_2{
+            border-bottom: 0px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        .d2_3{
+            margin: 0px;
+            word-wrap: break-word;
+            font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1.25em;
+            color: #484848;
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+        .form-control{
+            width: 520px;
+            height: 40px;
+        }
+        .d2_4{
+            margin-top: 20px;
+            width: 200px;
+        }
+        .d1_24{
+            padding: 20px 30px 16px 30px;
+            width: 600px;
+        }
+        .d1_24:before {
+            content: " ";
+            display: table;
+        }
+        .d1_25{
+            height: 1px;
+            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08);
+            position: relative;
+            padding-bottom: 16px;
+            width: 520px;
+        }
+        .d1_25::before {
+            content: '';
+            height: 18px;
+            box-shadow: 0 -9px 15px -5px rgba(0, 0, 0, 0.09);
+            border-radius: 75%;
+            display: block;
+            position: absolute;
+            width: 100%;
+            z-index: -1;
+        }
+        .d1_26{
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+        .d1_28{
+            display: table;
+            width: 100%;
+            border-spacing: 0px;
+            height: 100%;
+        }
+        .d1_35{
+            display: table-cell;
+            width: 35%;
+            vertical-align: middle;
+        }
+        .d1_36{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .d1_next{
+            background-color: rgb(51, 122, 183);
+            border: none;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="nav_info">
+    <div class="house_info">
+        <div class="nav_logo">
+            <img src="images/pandalogo.jpg">
+        </div>
+        <div class="nav_text">
+            <h2>填写房屋基本信息</h2>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-pills nav-justified">
+    <li><a href="">房屋信息</a></li>
+    <li class="active"><a href="">房屋配置</a></li>
+    <li><a href="">房屋位置</a></li>
+    <li><a href="">房屋详情</a></li>
+    <li><a href="">便利设施</a></li>
+    <li><a href="">完成发布</a></li>
+</ul>
+<div class="nav_line" style="width: 100%; left: 0%; max-width: 100%;"></div>
+
+<div class="d2_1">
+    <section>
+        <div class="d2_2">
+            <div class="d2_3">您的房源可以住几个房客？</div>
+            <div class="d2_4">
+                <select name="people" id="people" class="form-control">
+                    <option value="请选择" selected="selected">请选择</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d2_2">
+            <div class="d2_3">有几个卧室？</div>
+            <div class="d2_4">
+                <select name="bedroom" id="bedroom" class="form-control">
+                    <option value="请选择" selected="selected">请选择</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d2_2">
+            <div class="d2_3">有几张床？</div>
+            <div class="d2_4">
+                <select name="bed" id="bed" class="form-control">
+                    <option value="请选择" selected="selected">请选择</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d2_2">
+            <div class="d2_3">床是什么类型？</div>
+            <div class="d2_4">
+                <select name="bed_type" id="bed_type" class="form-control">
+                    <option value="请选择" selected="selected">请选择</option>
+                    <option value="单人床">单人床</option>
+                    <option value="双人床">双人床</option>
+                    <option value="沙发床">沙发床</option>
+                    <option value="双层床">双层床</option>
+                    <option value="吊床">吊床</option>
+                    <option value="水床">水床</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="d2_2">
+            <div class="d2_3">有几个卫生间？</div>
+            <div class="d2_4">
+                <select name="toliet" id="toliet" class="form-control">
+                    <option value="请选择" selected="selected">请选择</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="d1_24">
+    <div class="d1_25"></div>
+    <div class="d1_26" style="margin: 16px;">
+        <div class="d1_28">
+            <div class="d1_35"></div>
+            <div class="d1_36">
+                <button class="d1_next" type="submit" onclick="upHouseAllocation()">下一个</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+    var id = window.location.search.split("=")[1];
+    function upHouseAllocation() {
+        var people = $("#people option:selected").val();
+        var bedroom = $("#bedroom option:selected").val();
+        var bed = $("#bed option:selected").val();
+        var bed_type = $("#bed_type option:selected").val();
+        var toliet = $("#toliet option:selected").val();
+
+        $.ajax({
+            //请求方式
+            type : "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType:"json",
+            //请求地址
+            url : "http://localhost:8080//upHouseAllocation",
+            //数据，json字符串
+            data : JSON.stringify(
+                {
+                    "people":$("#people option:selected").val(),
+                    "bedroom":$("#bedroom option:selected").val(),
+                    "bed":$("#bed option:selected").val(),
+                    "bed_type":$("#bed_type option:selected").val(),
+                    "toliet":$("#toliet option:selected").val(),
+                    "houseid":id
+                }
+            ),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+                if(result){
+                    window.location.href="house_address.html?houseid="+id;
+                }
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+</script>
+</body>
+</html>
