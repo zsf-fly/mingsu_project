@@ -35,7 +35,7 @@ public class AdminInfoController {
     }
 
     /**
-     * 获取个人信息,若没有啧跳转添加页
+     * 获取个人信息,若没有责跳转添加页
      * @param administrator
      * @param httpSession
      * @return

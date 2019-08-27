@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <title>修改信息</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -84,7 +84,7 @@
      var worknumber;
      var phone;
      var id = parseInt(location.search.split("=")[1]);
-     alert(id);
+     //alert(id);
     function initPage(){
         //1.从后台的listAllUserInfo接口获取数据
         $.ajax({
@@ -117,6 +117,7 @@
     }
     initPage();
 
+    //修改
     function sub() {
         $.ajax({
             //请求方式
@@ -148,6 +149,7 @@
         });
     }
 
+    //重置
      $(".btn-danger").click(function () {
          $("#account").val(account);
          $("#name").val(name);

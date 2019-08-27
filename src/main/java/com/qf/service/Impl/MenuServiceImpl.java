@@ -17,10 +17,10 @@ public class MenuServiceImpl implements MenuService {
 
     /**
      * 管理员登录时获取到管理员的权限菜单
-     * @param loginInfo
+     * @param adminid
      * @return
      */
-    public List<Menu> initMenuList(LoginInfo loginInfo){
-        return menuMapper.initMenuList(loginInfo);
+    public List<Menu> initMenuList(int adminid){
+        return menuMapper.initMenuList(adminid);
     }
 }

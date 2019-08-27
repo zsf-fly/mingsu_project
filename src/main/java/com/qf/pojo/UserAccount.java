@@ -5,7 +5,8 @@ public class UserAccount {
     String username;
     String password;
     final int identity=1;
-    String telphone;
+    String  telphone;
+
 
     public int getUserid() {
         return userid;
@@ -30,7 +31,6 @@ public class UserAccount {
     public void setPassword(String password) {
         this.password = password;
     }
-
     public int getIdentity() {
         return identity;
     }

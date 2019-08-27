@@ -1,5 +1,7 @@
 package com.qf.pojo;
 
+import lombok.Data;
+
 public class Administrator {
     int adminid;
     String adminname;

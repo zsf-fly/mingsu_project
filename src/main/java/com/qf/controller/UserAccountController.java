@@ -43,4 +43,9 @@ public class UserAccountController {
     public Object checkUserAccount(@RequestParam String telphone){
         return userAccountService.checkUserAccount(telphone);
     }
+
+    @RequestMapping("deletUser")
+    public Object deletUser(int userid){
+        return userAccountService.deletUser(userid)>0;
+    }
 }

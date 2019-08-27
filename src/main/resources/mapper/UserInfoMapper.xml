@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.UserInfoMapper">
+
+    <!--登录-->
+    <select id="loginCheck" parameterType="com.qf.dto.LoginInfo" resultType="com.qf.pojo.UserAccount">
+        select `identity` from user_account where username=#{name} and `password`=#{password} and status=1
+    </select>
+
+    <!--注册查询用户名是否已存在-->
+    <select id="checkUsername" parameterType="com.qf.pojo.UserAccount" resultType="com.qf.pojo.UserAccount">
+        select * from user_account where username=#{username}
+    </select>
+
+    <!--注册查询手机号是否已存在-->
+    <select id="checkTelphone" parameterType="com.qf.pojo.UserAccount" resultType="com.qf.pojo.UserAccount">
+        select * from user_account where telphone=#{telphone}
+    </select>
+
+    <!--注册-->
+    <insert id="register" parameterType="com.qf.pojo.UserAccount">
+        insert into user_account(userid,username,password,`identity`,telphone)
+        values(DEFAULT,#{username},#{password},1,#{telphone})
+    </insert>
+
+    <!--用户信息-->
+    <resultMap id="UserInfoMap" type="com.qf.vo.UserInfoVO">
+        <id column="uinfoid" property="uinfoid"></id>
+        <result column="username" property="username"></result>
+        <result column="user_name" property="user_name"></result>
+        <result column="user_sex" property="user_sex"></result>
+        <result column="user_email" property="user_email"></result>
+        <result column="user_address" property="user_address"></result>
+        <result column="user_phone" property="user_phone"></result>
+        <collection property="houses" ofType="com.qf.pojo.Houses">
+            <result column="h_name" property="h_name"></result>
+            <result column="h_type" property="h_type"></result>
+            <result column="rent_type" property="rent_type"></result>
+        </collection>
+    </resultMap>
+    <select id="selectUserInfo" parameterType="int" resultMap="UserInfoMap">
+        select ua.username,ui.*,h.h_name,h.h_type,h.rent_type from user_account ua,userinfo ui,houses h
+        where ua.userid=ui.userid and ua.userid=h.userid and ua.userid=#{userid}
+    </select>
+</mapper>

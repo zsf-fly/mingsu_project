@@ -118,7 +118,7 @@
                     //console.log(result);
                     //2.将数据填充到table中
                     $(result.list).each(function (index, item) {
-                        var trStr = "<tr>";
+                        var trStr = "<tr id="+item.userid+">";
                         //获取id并拼接
                         trStr += "<td>" + item.userid + "</td>";
                         trStr += "<td>" + item.username + "</td>";
@@ -145,11 +145,11 @@
                         for (var i = 1; i <= result.pages; i++) {
                             splitePageStr += "<li><a href=\"Background_user_table.html?pageNum=" + i + "\">" + i + "</a></li>";
                         }
-                        splitePageStr += "<li><a href=\"Background_user_table.html?pageNum=" + (pageNum + 1) + "\">下一页</a></li>";
+                        splitePageStr += "<li><a href=\"Background_user_table.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">下一页</a></li>";
                         $(".pagination").html("");
                         $(".pagination").append(splitePageStr);
                     } else if (pageNum == result.pages) {
-                        var splitePageStr = "<li><a href=\"Background_user_table.html?pageNum=" + (pageNum - 1) + "\">上一页</a></li>";
+                        var splitePageStr = "<li><a href=\"Background_user_table.html?pageNum=" + (parseInt(pageNum)-1) + "\">上一页</a></li>";
                         for (var i = 1; i <= result.pages; i++) {
                             splitePageStr += "<li><a href=\"Background_user_table.html?pageNum=" + i + "\">" + i + "</a></li>";
                         }
@@ -158,11 +158,11 @@
                         $(".pagination").html("");
                         $(".pagination").append(splitePageStr);
                     } else {
-                        var splitePageStr = "<li><a href=\"Background_user_table.html?pageNum=" + (pageNum - 1) + "\">上一页</a></li>";
+                        var splitePageStr = "<li><a href=\"Background_user_table.html?pageNum=" + (parseInt(pageNum)-1) + "\">上一页</a></li>";
                         for (var i = 2; i <= result.pages; i++) {
                             splitePageStr += "<li><a href=\"Background_user_table.html?pageNum=" + i + "\">" + i + "</a></li>";
                         }
-                        splitePageStr += "<li><a href=\"Background_user_table.html?pageNum=" + (pageNum + 1) + "\">下一页</a></li>";
+                        splitePageStr += "<li><a href=\"Background_user_table.html?pageNum=" + (parseInt(pageNum )+1) + "\">下一页</a></li>";
                         //$(".pagination").html("");
                         $(".pagination").html("");
                         $(".pagination").append(splitePageStr);
@@ -200,9 +200,9 @@
                 success : function(result) {
                     $("#dataTable").html("");
                     var item = result;
-                    console.log(result);
+                    //console.log(result);
                     //2.将数据填充到table中
-                    var trStr = "<tr>";
+                    var trStr = "<tr id="+item.userid+">";
                     //获取id并拼接
                     trStr+="<td>"+item.userid+"</td>";
                     trStr+="<td>"+item.username+"</td>";
@@ -229,6 +229,38 @@
     /*查看用户信息*/
     function checkmanage(userid) {
         window.location.href="personal_information.html?userid="+userid
+    }
+
+    /*根据id删除用户*/
+    function deleteone(userid) {
+        $.ajax({
+            //请求方式
+            type: "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType: "json",
+            //请求地址
+            url: "http://localhost:8080//deletUser?userid="+userid,
+            //回传数据,json格式
+            /*data: JSON.stringify({
+                "adminid":adminid
+            }),*/
+            //请求成功
+            success: function (result) {
+                alert(result);
+                if (result){
+                    $("#"+userid).remove();
+                } else {
+                    alert("删除失败");
+                }
+            },
+            //请求失败，包含具体的错误信息
+            error: function (e) {
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
     }
 </script>
 </body>

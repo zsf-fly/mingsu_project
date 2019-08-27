@@ -1,8 +1,5 @@
 package com.qf.dto;
 
-/**
- * 登录验证接受的信息
- */
 public class LoginInfo {
     String name;
     String password;

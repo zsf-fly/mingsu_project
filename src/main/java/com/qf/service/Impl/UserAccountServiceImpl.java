@@ -40,4 +40,13 @@ public class UserAccountServiceImpl implements UserAccountService {
     public UserAccount checkUserAccount(String telphone) {
         return userAccountMapper.checkUserAccount(telphone);
     }
+
+    /**
+     * 根据id删除用户账号
+     * @param userid
+     * @return
+     */
+    public int deletUser(int userid) {
+        return userAccountMapper.deletUser(userid);
+    }
 }

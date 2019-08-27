@@ -46,11 +46,15 @@
                     <form class="form-inline" role="form" style="float:left;">
                         <div class="form-group has-feedback">
                             <div class="input-group">
-                                <div class="input-group-addon">工作证</div>
-                                <input class="form-control has-success" type="text" placeholder="工作证" id="number">
+                                <div class="input-group-addon">姓名</div>
+                                <input class="form-control has-success" type="text" placeholder="房客姓名" id="user_name">
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-addon">房屋地址</div>
+                                <input class="form-control has-success" type="text" placeholder="房客姓名" id="address">
                             </div>
                         </div>
-                        <button type="button" class="btn btn-warning" onclick="checkadmin()"><i class="glyphicon glyphicon-search" ></i> 查询</button>
+                        <button type="button" class="btn btn-warning" onclick="checkorders()"><i class="glyphicon glyphicon-search" ></i> 查询</button>
                     </form>
                     <br>
                     <hr style="clear:both;">
@@ -59,12 +63,12 @@
                             <thead>
                             <tr >
                                 <th width="30">#</th>
-                                <th width="30"><input type="checkbox"></th>
-                                <th>账号名称</th>
-                                <th>管理员姓名</th>
-                                <th>工作证号</th>
-                                <th>手机号码</th>
-                                <th width="75">操作</th>
+                                <th>房客姓名</th>
+                                <th>入住时间</th>
+                                <th>退房时间</th>
+                                <th>房屋名字</th>
+                                <th>房屋地址</th>
+                                <th>订单创建时间</th>
                             </tr>
                             </thead>
                             <tbody id = "dataTable">
@@ -72,9 +76,9 @@
                             <tfoot>
                             <tr>
                                 <td colspan="7" align="center">
-                                <ul class="pagination">
-                                </ul>
-                            </td>
+                                    <ul class="pagination">
+                                    </ul>
+                                </td>
                             </tr>
                             </tfoot>
                         </table>
@@ -95,9 +99,12 @@
 </script>
 
 <script>
+    Date.prototype.toLocaleString = function() {
+        return this.getFullYear() + "年" + (this.getMonth() + 1) + "月" + this.getDate() + "日 ";
+    };
     $(function () {
         var pageNum = window.location.search.split("=")[1];
-        var requestURL = "listAllAdministrator";
+        var requestURL = "selectAllOrder";
         if(pageNum==null){
             pageNum = 1;
         }else {
@@ -119,18 +126,17 @@
                 console.log(result);
                 //2.将数据填充到table中
                 $(result.list).each(function(index,item){
-                    var trStr = "<tr id="+item.adminid+">";
+                    var unixTimestamp = new Date( item.createtime ) ;
+                    commonTime = unixTimestamp.toLocaleString();
+                    var trStr = "<tr id="+item.orderid+">";
                     //获取id并拼接
-                    trStr+="<td>"+item.adminid+"</td>";
-                    trStr+="<td><input type=\"checkbox\"></td>";
-                    trStr+="<td>"+item.adminname+"</td>";
-                    trStr+="<td>"+item.admin_name+"</td>";
-                    trStr+="<td>"+item.work_number+"</td>";
-                    trStr+="<td>"+item.admin_phone+"</td>";
-                    trStr+="<td>";
-                    trStr+="<button type=\"button\" class='btn btn-primary btn-xs'><i class=' glyphicon glyphicon-pencil' onclick=\"changemanage("+item.adminid+")\"></i></button>&nbsp;"
-                    trStr+="<button type=\"button\" class='btn btn-danger btn-xs'><i class=' glyphicon glyphicon-remove' onclick=\"deleteone("+item.adminid+")\"></i></button>"
-                    trStr+="</td>";
+                    trStr+="<td>"+item.orderid+"</td>";
+                    trStr+="<td>"+item.user_name+"</td>";
+                    trStr+="<td>"+item.checkin_data+"</td>";
+                    trStr+="<td>"+item.checkout_data+"</td>";
+                    trStr+="<td>"+item.h_name+"</td>";
+                    trStr+="<td>"+item.address+"</td>";
+                    trStr+="<td>"+commonTime+"</td>";
                     trStr+="</tr>";
                     $("#dataTable").append(trStr);
                 });
@@ -177,44 +183,82 @@
         });
     });
 
-    /*根据工作证查询某个管理员*/
-    function checkadmin() {
+    /*根据房客姓名或者房屋地址查询订单*/
+    function checkorders() {
+        var pageNum = window.location.search.split("=")[1];
+        var requestURL = "checkorders";
+        if(pageNum==null){
+            pageNum = 1;
+        }else {
+            requestURL+="?pageNum="+pageNum;
+        }
         $.ajax({
             //请求方式
-            // type : "POST",
+            type : "POST",
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //接受数据类型
             dataType:"json",
             //请求地址
-            url : "http://localhost:8080//checkadmin?work_number="+$("#number").val(),
-            //回传数据,json格式
-            /*data : JSON.stringify({
-                "work_number":$("#number").val()
-            }),*/
+            url : requestURL,
+            data : JSON.stringify(
+                {
+                    "user_name":$("#user_name").val(),
+                    "address":$("#address").val()
+                }
+            ),
             //请求成功
             success : function(result) {
-                if (result){
-                    alert("该员工不存在或者您的权限不够");
-                }else {
-                    $("#dataTable").html("");
-                    //console.log(result);
-                    //2.将数据填充到table中
-                    var item = result;
-                    var trStr = "<tr id="+item.adminid+">";
-                    //获取id并拼接
-                    trStr+="<td>"+item.adminid+"</td>";
-                    trStr+="<td><input type=\"checkbox\"></td>";
-                    trStr+="<td>"+item.adminname+"</td>";
-                    trStr+="<td>"+item.admin_name+"</td>";
-                    trStr+="<td>"+item.work_number+"</td>";
-                    trStr+="<td>"+item.admin_phone+"</td>";
-                    trStr+="<td>";
-                    trStr+="<button type=\"button\" class='btn btn-primary btn-xs' onclick=\"changemanage("+item.adminid+")\"><i class=' glyphicon glyphicon-pencil' onclick=''></i></button>&nbsp;"
-                    trStr+="<button type=\"button\" class='btn btn-danger btn-xs' onclick=\"deleteone("+item.adminid+")\"><i class=' glyphicon glyphicon-remove' onclick=''></i></button>"
-                    trStr+="</td>";
+                $("#dataTable").html("");
+                console.log(result);
+                //2.将数据填充到table中
+                $(result.list).each(function(index,item){
+                    var unixTimestamp = new Date( item.createtime ) ;
+                    commonTime = unixTimestamp.toLocaleString();
+                    var trStr = "<tr id="+item.orderid+">";
+                     //获取id并拼接
+                    trStr+="<td>"+item.orderid+"</td>";
+                    trStr+="<td>"+item.user_name+"</td>";
+                    trStr+="<td>"+item.checkin_data+"</td>";
+                    trStr+="<td>"+item.checkout_data+"</td>";
+                    trStr+="<td>"+item.h_name+"</td>";
+                    trStr+="<td>"+item.address+"</td>";
+                    trStr+="<td>"+commonTime+"</td>";
                     trStr+="</tr>";
                     $("#dataTable").append(trStr);
+                });
+                if (pageNum == 1 && result.pages == 1) {
+                    var splitePageStr = "<li class=\"disabled\"><a href=\"#\">上一页</a></li>";
+                    for (var i = 1; i <= result.pages; i++) {
+                    splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + i + "\">" + i + "</a></li>";
+                }
+                    splitePageStr += "<li class=\"disabled\"><a href=\"#\">下一页</a></li>";
+                    $(".pagination").html("");
+                    $(".pagination").append(splitePageStr);
+                } else if (pageNum==1) {
+                    var splitePageStr = "<li class=\"disabled\"><a href=\"#\">上一页</a></li>";
+                    for (var i = 1; i <= result.pages; i++) {
+                    splitePageStr += "<li><a href=\"Badmin_manage.html?pageNum=" + i + "\">" + i + "</a></li>";
+                }
+                    splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">下一页</a></li>";
+                    $(".pagination").html("");
+                    $(".pagination").append(splitePageStr);
+                } else if (pageNum == result.pages) {
+                    var splitePageStr = "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum)-1) + "\">上一页</a></li>";
+                    for (var i = 1; i <= result.pages; i++) {
+                    splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + i + "\">" + i + "</a></li>";
+                }
+                    splitePageStr += "<li class=\"disabled\"><a href=\"#\">下一页</a></li>";
+                    $(".pagination").html("");
+                    $(".pagination").append(splitePageStr);
+                } else {
+                    var splitePageStr = "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum)-1) + "\">上一页</a></li>";
+                    for (var i = 1; i <= result.pages; i++) {
+                    splitePageStr += "<li><a href=\"admin_manage.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">" + i + "</a></li>";
+                }
+                    splitePageStr += "<li><a href=\"#\">下一页</a></li>";
+                    $(".pagination").html("");
+                    $(".pagination").append(splitePageStr);
                 }
             },
             error : function(e){
@@ -222,43 +266,6 @@
                 console.log(e.responseText);
             }
         });
-    }
-
-    /*根据id删除某个管理员*/
-    function deleteone(adminid){
-        $.ajax({
-            //请求方式
-            type: "GET",
-            //请求的媒体类型
-            contentType: "application/json;charset=UTF-8",
-            //接受数据类型
-            dataType: "json",
-            //请求地址
-            url: "http://localhost:8080//deletAdministrator?adminid="+adminid,
-            //回传数据,json格式
-            /*data: JSON.stringify({
-                "adminid":adminid
-            }),*/
-            //请求成功
-            success: function (result) {
-                //alert(result);
-                if (result){
-                    $("#"+adminid).remove();
-                } else {
-                    alert("删除失败");
-                }
-            },
-            //请求失败，包含具体的错误信息
-            error: function (e) {
-                console.log(e.status);
-                console.log(e.responseText);
-            }
-        });
-    }
-
-    /*点击修改跳转修改页*/
-    function changemanage(num) {
-        window.location.href="updateManage.html?adminid="+num
     }
 </script>
 </body>

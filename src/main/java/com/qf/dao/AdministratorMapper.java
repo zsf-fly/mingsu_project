@@ -17,4 +17,7 @@ public interface AdministratorMapper {
     //根据id查询信息
     public AdministratorInfoVO selectAdministratorById(int adminid);
 
+    //删除管理员
+    public int deletAdministrator(int adminid);
+
 }

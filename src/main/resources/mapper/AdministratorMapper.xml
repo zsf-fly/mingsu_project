@@ -6,13 +6,13 @@
 
     <!--登录查询管理员-->
     <select id="loginValidation" resultType="com.qf.pojo.Administrator" parameterType="com.qf.dto.LoginInfo">
-        select * from administrator where adminname=#{name} and adminpassword=#{password}
+        select * from administrator where adminname=#{name} and adminpassword=#{password} and status=1
     </select>
 
     <!--获取所有二级管理员的信息-->
     <select id="listAllAdministrator" resultType="com.qf.vo.AdministratorInfoVO">
         select a1.adminname,a2.* from administrator a1,admininfo a2,role r,administrator_role ar
-        where a1.adminid=a2.adminid and a1.adminid=ar.adminid and r.roleid=ar.roleid and r.roleid!=1
+        where a1.adminid=a2.adminid and a1.adminid=ar.adminid and r.roleid=ar.roleid and r.roleid!=1 and a1.status=1
     </select>
 
     <!--修改信息-->
@@ -24,4 +24,9 @@
     <select id="selectAdministratorById" resultType="com.qf.vo.AdministratorInfoVO" parameterType="int">
         select a1.adminname,a2.* from administrator a1,admininfo a2 where a1.adminid=a2.adminid and a2.adminid=#{adminid}
     </select>
+
+    <!--删除管理员-->
+    <update id="deletAdministrator" parameterType="int">
+        update administrator set status=0 where adminid=#{adminid}
+    </update>
 </mapper>

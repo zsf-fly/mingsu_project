@@ -15,4 +15,7 @@ public interface UserAccountMapper {
 
     //根据手机号查询用户账号信息
     public UserAccount checkUserAccount(String telphone);
+
+    //根据id删除用户账号
+    public int deletUser(int userid);
 }

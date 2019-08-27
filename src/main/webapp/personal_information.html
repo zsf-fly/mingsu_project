@@ -1,10 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>涓汉淇℃伅</title>
+    <meta charset="GB18030">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>用户信息页</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/doc.min.css">
+    <style>
+        .tree li {
+            list-style-type: none;
+            cursor:pointer;
+        }
+    </style>
 </head>
 <body>
 
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div><a class="navbar-brand" style="font-size:32px;">名宿管理系统</a></div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <div class="tree">
+                <ul style="padding-left:0px;" class="list-group">
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="panel panel-default">
+                <div class="panel-heading">个人信息数据<div style="float:right;cursor:pointer;" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-question-sign"></i></div></div>
+                <div class="panel-body">
+                    <form role="form" id="manage">
+                        <div class="form-group" align="center">
+                            <label>
+                                <input type="text" disabled="disabled" class="form-control" value="用户账号:">
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="script/docs.min.js"></script>
+
+<script type="text/javascript">
+    $(".tree").load("menu.html")
+</script>
+
+<script>
+    var userid = window.location.search.split("=")[1];
+    $(function () {
+        $.ajax({
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType:"json",
+            //请求地址
+            url : "http://localhost:8080//selectUserInfo?userid="+userid,
+            //请求成功
+            success : function(result) {
+                //2.将数据填充到from中
+                $("#manage").html("");
+                var trStr = "<div class=\"form-group\" align=\"center\">";
+                trStr+="<label>";
+                trStr+="<input type=\"text\" disabled=\"disabled\" class=\"form-control\" value='用户账号:"+result.username+"'>";
+                trStr+="</label>";
+                trStr+="</div>";
+
+                trStr+="<div class=\"form-group\" align=\"center\">";
+                trStr+="<label>";
+                trStr+="<input type=\"text\" disabled=\"disabled\" class=\"form-control\" value='用户姓名:"+result.user_name+"'>";
+                trStr+="</label>";
+                trStr+="</div>";
+
+                trStr+="<div class=\"form-group\" align=\"center\">";
+                trStr+="<label>";
+                trStr+="<input type=\"text\" disabled=\"disabled\" class=\"form-control\" value='用户性别:"+result.user_sex+"'>";
+                trStr+="</label>";
+                trStr+="</div>";
+
+                trStr+="<div class=\"form-group\" align=\"center\">";
+                trStr+="<label>";
+                trStr+="<input type=\"text\" disabled=\"disabled\" class=\"form-control\" value='用户邮件:"+result.user_email+"'>";
+                trStr+="</label>";
+                trStr+="</div>";
+
+                trStr+="<div class=\"form-group\" align=\"center\">";
+                trStr+="<label>";
+                trStr+="<input type=\"text\" disabled=\"disabled\" class=\"form-control\" value='用户手机号:"+result.user_phone+"'>";
+                trStr+="</label>";
+                trStr+="</div>";
+
+                trStr+="<div class=\"form-group\" align=\"center\">";
+                trStr+="<label>";
+                trStr+="<input type=\"text\" disabled=\"disabled\" class=\"form-control\" value='用户地址:"+result.user_address+"'>";
+                trStr+="</label>";
+                trStr+="</div>";
+
+                $(result.houses).each(function(index,item) {
+                    trStr+="<div class=\"form-group\" align=\"center\">";
+                    trStr+="<label>";
+                    trStr+="<input type=\"text\" disabled=\"disabled\" class=\"form-control\" value='用户房屋名字:"+item.h_name+"'>";
+                    trStr+="</label>";
+                    trStr+="</div>";
+
+                    trStr+="<div class=\"form-group\" align=\"center\">";
+                    trStr+="<label>";
+                    trStr+="<input type=\"text\" disabled=\"disabled\" class=\"form-control\" value='用户房源类型:"+item.h_type+"'>";
+                    trStr+="</label>";
+                    trStr+="</div>";
+
+                    trStr+="<div class=\"form-group\" align=\"center\">";
+                    trStr+="<label>";
+                    trStr+="<input type=\"text\" disabled=\"disabled\" class=\"form-control\" value='用户出租类型:"+item.rent_type+"'>";
+                    trStr+="</label>";
+                    trStr+="</div>";
+                });
+                $("#manage").html(trStr);
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    })
+</script>
 </body>
 </html>

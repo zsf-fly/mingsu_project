@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface MenuService {
 
-    public List<Menu> initMenuList(LoginInfo loginInfo);
+    public List<Menu> initMenuList(int adminid);
 }

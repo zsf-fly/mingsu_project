@@ -45,4 +45,9 @@ public class AdministratorController {
     public Object selectAdministratorById(@RequestParam int adminid){
         return administratorService.selectAdministratorById(adminid);
     }
+
+    @RequestMapping("deletAdministrator")
+    public Object deletAdministrator(@RequestParam int adminid){
+        return administratorService.deletAdministrator(adminid)>0;
+    }
 }

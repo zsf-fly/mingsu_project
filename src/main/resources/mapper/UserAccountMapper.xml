@@ -3,17 +3,19 @@
         PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qf.dao.UserAccountMapper">
-    <select id="loginUser" parameterType="com.qf.dto.LoginInfo" resultType="com.qf.pojo.UserAccount">
-        select * from user_account where username=#{name} and `password`=#{password}
-    </select>
 
     <!--展示所有的用户账号信息-->
     <select id="listAllUser" resultType="com.qf.pojo.UserAccount">
-        select * from user_account
+        select * from user_account where status=1
     </select>
 
     <!--根据手机号查询用户账号信息-->
     <select id="checkUserAccount" parameterType="String" resultType="com.qf.pojo.UserAccount">
         select * from user_account where telphone=#{telphone}
     </select>
+
+    <!--删除用户账号-->
+    <update id="deletUser" parameterType="int">
+        update user_account set status=0 where userid=#{userid}
+    </update>
 </mapper>

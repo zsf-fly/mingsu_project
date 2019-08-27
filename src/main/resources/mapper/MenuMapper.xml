@@ -16,11 +16,11 @@
         </collection>
     </resultMap>
     <!--查询权限菜单-->
-    <select id="initMenuList" resultMap="menuList" parameterType="com.qf.dto.LoginInfo">
+    <select id="initMenuList" resultMap="menuList" parameterType="int">
         SELECT me.*,tab.menuid cmenuid,tab.menuname cmenuname,tab.menu_url cmenu_url, tab.parentid cparentid FROM menu me,
         (SELECT m.* FROM administrator a,administrator_role ar,role r,role_menu rm,menu m WHERE
         a.adminid=ar.adminid AND r.roleid=ar.roleid AND r.roleid=rm.roleid AND m.menuid=rm.menuid AND
-        a.adminname=#{name} AND a.adminpassword=#{password}) tab
+        a.adminid=#{adminid}) tab
         WHERE me.menuid=tab.parentid
     </select>
 </mapper>

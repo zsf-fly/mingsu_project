@@ -8,5 +8,5 @@ import java.util.List;
 public interface MenuMapper {
 
     //登录时查询权限菜单
-    public List<Menu> initMenuList(LoginInfo loginInfo);
+    public List<Menu> initMenuList(int adminid);
 }

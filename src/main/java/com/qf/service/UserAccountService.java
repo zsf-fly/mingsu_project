@@ -12,4 +12,6 @@ public interface UserAccountService {
     public List<UserAccount> listAllUser();
 
     public UserAccount checkUserAccount(String telphone);
+
+    public int deletUser(int userid);
 }
