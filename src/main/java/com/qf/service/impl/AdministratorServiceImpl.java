@@ -50,4 +50,5 @@ public class AdministratorServiceImpl implements AdministratorService {
     public int deletAdministrator(int adminid) {
         return administratorMapper.deletAdministrator(adminid);
     }
+
 }
