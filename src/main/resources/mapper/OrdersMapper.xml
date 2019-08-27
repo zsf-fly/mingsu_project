@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.OrdersMapper">
+
+    <!--查看所有订单-->
+    <select id="selectAllOrder" resultType="com.qf.vo.OrdersReveiwVO">
+        select o.*,h.h_name,hd.address,u.user_name from orders o,houses h,house_address hd,userinfo u where
+        o.houseid=h.houseid and o.houseid=hd.houseid and o.userid=u.userid
+    </select>
+
+    <select id="checkorders" resultType="com.qf.vo.OrdersReveiwVO" parameterType="com.qf.dto.OrderCondition">
+        select o.*,h.h_name,hd.address,u.user_name from orders o,houses h,house_address hd,userinfo u where
+        o.houseid=h.houseid and o.houseid=hd.houseid and o.userid=u.userid
+        <if test="user_name!=null and user_name!=''">
+            and u.user_name=#{user_name}
+        </if>
+        <if test="address!=null and address!=''">
+            and hd.address=#{address}
+        </if>
+    </select>
+</mapper>

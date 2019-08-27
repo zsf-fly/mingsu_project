@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="GB18030">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>修改信息</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/doc.min.css">
+    <style>
+        .tree li {
+            list-style-type: none;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div><a class="navbar-brand" style="font-size:32px;">名宿管理系统</a></div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <div class="tree">
+                <ul style="padding-left:0px;" class="list-group">
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="panel panel-default">
+                <div class="panel-heading">个人信息数据<div style="float:right;cursor:pointer;" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-question-sign"></i></div></div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="account">用户账号</label>
+                            <input type="text" disabled="disabled" class="form-control" id="account" value="测试用户">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">管理员姓名</label>
+                            <input type="email" class="form-control" id="name" value="">
+                            <p class="help-block label label-warning">请输入您本人的姓名</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="worknumber">工作证号</label>
+                            <input type="email" class="form-control" id="worknumber" value="">
+                            <p class="help-block label label-warning">请输入您本人的工作证</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">手机号码</label>
+                            <input type="email" class="form-control" id="phone" value="">
+                            <p class="help-block label label-warning">请输入您本人的手机号</p>
+                        </div>
+                        <button type="button" class="btn btn-success" onclick="sub()"><i class="glyphicon glyphicon-edit"></i> 修改</button>
+                        <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-refresh"></i>重置</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="script/docs.min.js"></script>
+
+<script type="text/javascript">
+    $(".tree").load("menu.html")
+</script>
+
+<script>
+     var account;
+     var name;
+     var worknumber;
+     var phone;
+     var id = parseInt(location.search.split("=")[1]);
+     //alert(id);
+    function initPage(){
+        //1.从后台的listAllUserInfo接口获取数据
+        $.ajax({
+            //请求地址
+            url : "http://localhost:8080//selectAdministratorById?adminid="+id,
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //数据，json字符串
+           /* data : JSON.stringify({
+                "adminid":id
+            }),*/
+            //请求成功
+            success : function(result) {
+                $("#account").val(result.adminname);
+                $("#name").val(result.admin_name);
+                $("#worknumber").val(result.work_number);
+                $("#phone").val(result.admin_phone);
+                account=result.adminname;
+                name=result.admin_name;
+                worknumber=result.work_number;
+                phone=result.admin_phone;
+            },
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+    initPage();
+
+    //修改
+    function sub() {
+        $.ajax({
+            //请求方式
+            type: "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //请求地址
+            url: "http://localhost:8080//updateAdminInfo",
+            //数据，json字符串
+            data: JSON.stringify({
+                "adminid":id,
+                "admin_name":$("#name").val(),
+                "work_number":$("#worknumber").val(),
+                "admin_phone":$("#phone").val()
+            }),
+            //请求成功
+            success: function (result) {
+                //var text = result.toString();
+                if (result) {
+                    window.location.href = "admin_manage.html";
+                } else {
+                    alert("修改失败");
+                }
+            },
+            //请求失败，包含具体的错误信息
+            error: function (e) {
+                console.log("错误");
+            }
+        });
+    }
+
+    //重置
+     $(".btn-danger").click(function () {
+         $("#account").val(account);
+         $("#name").val(name);
+         $("#worknumber").val(worknumber);
+         $("#phone").val(phone);
+     })
+</script>
+</body>
+</html>

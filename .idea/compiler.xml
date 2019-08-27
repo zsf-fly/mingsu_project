@@ -9,8 +9,5 @@
         <module name="mingsu_project" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="mingsu_project" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>
