@@ -42,7 +42,6 @@ public class AdministratorServiceImpl implements AdministratorService {
     public AdministratorInfoVO selectAdministratorById(int adminid) {
         return administratorMapper.selectAdministratorById(adminid);
     }
-
     /**
      * 根据id删除管理员
      * @param adminid
