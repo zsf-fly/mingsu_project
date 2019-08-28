@@ -52,7 +52,7 @@
     <!--添加房屋审核订单-->
     <insert id="addAudit" parameterType="com.qf.pojo.Audit">
         insert into audit(auditid,houseid,createtime,status)
-        values(DEFAULT,#{houseid},#{createtime},0)
+        values(DEFAULT,#{houseid},#{createtime},2)
     </insert>
 
 </mapper>

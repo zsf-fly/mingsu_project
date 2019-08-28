@@ -59,7 +59,6 @@
                             <thead>
                             <tr >
                                 <th width="30">#</th>
-                                <th width="30"><input type="checkbox"></th>
                                 <th>账号名称</th>
                                 <th>管理员姓名</th>
                                 <th>工作证号</th>
@@ -95,7 +94,7 @@
 </script>
 
 <script>
-    $(function () {
+    function initPage() {
         var pageNum = window.location.search.split("=")[1];
         var requestURL = "listAllAdministrator";
         if(pageNum==null){
@@ -122,7 +121,6 @@
                     var trStr = "<tr id="+item.adminid+">";
                     //获取id并拼接
                     trStr+="<td>"+item.adminid+"</td>";
-                    trStr+="<td><input type=\"checkbox\"></td>";
                     trStr+="<td>"+item.adminname+"</td>";
                     trStr+="<td>"+item.admin_name+"</td>";
                     trStr+="<td>"+item.work_number+"</td>";
@@ -175,7 +173,8 @@
                 console.log(e.responseText);
             }
         });
-    });
+    }
+    initPage();
 
     /*根据工作证查询某个管理员*/
     function checkadmin() {
@@ -194,9 +193,7 @@
             }),*/
             //请求成功
             success : function(result) {
-                if (result){
-                    alert("该员工不存在或者您的权限不够");
-                }else {
+                if (result!=-1){
                     $("#dataTable").html("");
                     //console.log(result);
                     //2.将数据填充到table中
@@ -204,7 +201,6 @@
                     var trStr = "<tr id="+item.adminid+">";
                     //获取id并拼接
                     trStr+="<td>"+item.adminid+"</td>";
-                    trStr+="<td><input type=\"checkbox\"></td>";
                     trStr+="<td>"+item.adminname+"</td>";
                     trStr+="<td>"+item.admin_name+"</td>";
                     trStr+="<td>"+item.work_number+"</td>";
@@ -215,6 +211,11 @@
                     trStr+="</td>";
                     trStr+="</tr>";
                     $("#dataTable").append(trStr);
+                    $(".pagination").html("");
+
+                }else {
+                    alert("该员工不存在或者您的权限不够");
+                    initPage();
                 }
             },
             error : function(e){

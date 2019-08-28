@@ -99,7 +99,7 @@
     Date.prototype.toLocaleString = function() {
         return this.getFullYear() + "年" + (this.getMonth() + 1) + "月" + this.getDate() + "日 ";
     };
-    $(function () {
+    function initPage() {
         var pageNum = window.location.search.split("=")[1];
         var requestURL = "selectAllAuditSingle";
         if (pageNum == null) {
@@ -179,59 +179,58 @@
                 console.log(e.responseText);
             }
         });
-    });
+    }
+    initPage();
 
     /*根据审核状态查询订单*/
     function checkaudit() {
-        var pageNum = window.location.search.split("=")[1];
-        var requestURL = "checkaudit";
-        if (pageNum == null) {
-            pageNum = 1;
-        } else {
-            requestURL += "?pageNum=" + pageNum;
-        }
-        $.ajax({
-            //请求方式
-            type: "POST",
-            //请求的媒体类型
-            contentType: "application/json;charset=UTF-8",
-            //接受数据类型
-            dataType: "json",
-            //请求地址
-            url: requestURL,
-            data: JSON.stringify(
-                {
-                    "status": $("#status").val()
+        if ($("#status").val()==null||$("#status").val()==""){
+            initPage();
+        }else {
+            var requestURL = "checkaudit";
+            $.ajax({
+                //请求方式
+                type: "POST",
+                //请求的媒体类型
+                contentType: "application/json;charset=UTF-8",
+                //接受数据类型
+                dataType: "json",
+                //请求地址
+                url: requestURL,
+                data: JSON.stringify(
+                    {
+                        "status": $("#status").val()
+                    }
+                ),
+                //请求成功
+                success: function (result) {
+                    $("#dataTable").html("");
+                    console.log(result);
+                    //2.将数据填充到table中
+                    $(result).each(function (index, item) {
+                        var unixTimestamp = new Date(item.createtime);
+                        commonTime = unixTimestamp.toLocaleString();
+                        var trStr = "<tr id=" + item.auditid + ">";
+                        //获取id并拼接
+                        trStr += "<td>" + item.auditid + "</td>";
+                        trStr += "<td>" + item.h_name + "</td>";
+                        trStr += "<td>" + item.provinces+","+item.city+","+item.address + "</td>";
+                        trStr += "<td>" + item.h_type + "</td>";
+                        trStr += "<td>" + item.h_name + "</td>";
+                        trStr += "<td>" + item.rent_type + "</td>";
+                        trStr += "<td>" + item.status + "</td>";
+                        trStr += "<td>" + commonTime + "</td>";
+                        trStr += "</tr>";
+                        $("#dataTable").append(trStr);
+                    });
+                    $(".pagination").html("");
+                },
+                error: function (e) {
+                    console.log(e.status);
+                    console.log(e.responseText);
                 }
-            ),
-            //请求成功
-            success: function (result) {
-                $("#dataTable").html("");
-                console.log(result);
-                //2.将数据填充到table中
-                $(result).each(function (index, item) {
-                    var unixTimestamp = new Date(item.createtime);
-                    commonTime = unixTimestamp.toLocaleString();
-                    var trStr = "<tr id=" + item.auditid + ">";
-                    //获取id并拼接
-                    trStr += "<td>" + item.auditid + "</td>";
-                    trStr += "<td>" + item.h_name + "</td>";
-                    trStr += "<td>" + item.provinces+","+item.city+","+item.address + "</td>";
-                    trStr += "<td>" + item.h_type + "</td>";
-                    trStr += "<td>" + item.h_name + "</td>";
-                    trStr += "<td>" + item.rent_type + "</td>";
-                    trStr += "<td>" + item.status + "</td>";
-                    trStr += "<td>" + commonTime + "</td>";
-                    trStr += "</tr>";
-                    $("#dataTable").append(trStr);
-                });
-                $(".pagination").html("");
-            },
-            error: function (e) {
-                console.log(e.status);
-                console.log(e.responseText);
-            }
-        });
+            });
+        }
     }
 </script>
 </body>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -103,7 +104,12 @@ public class HouseReleaseController {
 
     //添加房屋审核订单
     @RequestMapping("addAudit")
-    public Object addAudit(@RequestBody Audit audit){
+    public Object addAudit(@RequestBody(required = false) Audit audit, HttpSession httpSession){
+        UserAccount userAccount = (UserAccount) httpSession.getAttribute("userAccount");
+        System.out.println(userAccount);
+        int userid = userAccount.getUserid();
+        audit.setUserid(userid);
+        System.out.println(audit);
         return houseReleaseService.addAudit(audit);
     }
 }

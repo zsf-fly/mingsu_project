@@ -8,13 +8,13 @@
     <select id="selectAllAuditSingle" resultType="com.qf.vo.AuditVO">
         select a.*,u.user_name,h.h_name,h.h_type,h.rent_type,ha.provinces,ha.city,ha.address from
         audit a,userinfo u,houses h,house_address ha where
-        a.userid=u.userid and a.housid=h.houseid and a.housid=ha.houseid
+        a.userid=u.userid and a.houseid=h.houseid and a.houseid=ha.houseid
     </select>
 
     <!--根据审核状态查询订单-->
     <select id="checkaudit" resultType="com.qf.vo.AuditVO" parameterType="com.qf.vo.AuditVO">
         select a.*,u.user_name,h.h_name,h.h_type,h.rent_type,ha.provinces,ha.city,ha.address from
         audit a,userinfo u,houses h,house_address ha where
-        a.userid=u.userid and a.housid=h.houseid and a.housid=ha.houseid and status=#{status}
+        a.userid=u.userid and a.houseid=h.houseid and a.houseid=ha.houseid and status=#{status}
     </select>
 </mapper>

@@ -6,7 +6,7 @@
 
     <!--登录-->
     <select id="loginCheck" parameterType="com.qf.dto.LoginInfo" resultType="com.qf.pojo.UserAccount">
-        select `identity` from user_account where username=#{name} and `password`=#{password} and status=1
+        select * from user_account where username=#{name} and `password`=#{password} and status=1
     </select>
 
     <!--注册查询用户名是否已存在-->

@@ -62,7 +62,7 @@ public class AdminInfoController {
     public Object checkadmin(@RequestParam String work_number){
         AdministratorInfoVO checkadmin = adminInfoService.checkadmin(work_number);
         if (checkadmin==null){
-            return true;
+            return -1;
         }
         return checkadmin;
     }

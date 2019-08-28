@@ -1,7 +1,6 @@
 package com.qf.service.Impl;
 
 import com.qf.dao.MenuMapper;
-import com.qf.dto.LoginInfo;
 import com.qf.pojo.Menu;
 import com.qf.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;

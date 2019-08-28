@@ -214,6 +214,7 @@
                     trStr += "</td>";
                     trStr+="</tr>";
                     $("#dataTable").append(trStr);
+                    $(".pagination").html("");
                 },
                 //请求失败，包含具体的错误信息
                 error : function(e){
@@ -222,6 +223,7 @@
                 }
             });
         } else {
+            initPage();
             alert("请输入电话号码");
         }
     }
@@ -250,7 +252,7 @@
             success: function (result) {
                 alert(result);
                 if (result){
-                    $("#"+userid).remove();
+                    initPage();
                 } else {
                     alert("删除失败");
                 }
