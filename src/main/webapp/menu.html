@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>菜单栏</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        .tree li {
+            list-style-type: none;
+            cursor:pointer;
+        }
+        table tbody tr:nth-child(odd){background:#F4F4F4;}
+        table tbody td:nth-child(even){color:#C00;}
+    </style>
+</head>
+<body>
+<div class="col-sm-3 col-md-2 sidebar">
+    <div class="tree">
+        <li class="list-group-item" >
+            <span><i class="glyphicon glyphicon glyphicon-tasks"></i><a onclick="detection()">个人中心</a></span>
+        </li>
+        <ul style="color:black" class="list-group">
+            <li class="list-group-item tree-closed" >
+                <a href="admin_main.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="script/docs.min.js"></script>
+
+<script>
+    var str = "";
+    $.ajax({
+        type:"POST",
+        contentType: "application/json;charset=UTF-8",
+        //设置ajax为同步
+        async:false,
+        dataType: "json",
+        url: "http://localhost:8080//initMenu",
+        /*data:JSON.stringify({
+
+        }),*/
+        success: function (result) {
+            $(".list-group").html("");
+            $(result).each(function(index,item){
+                str = "<li class=\"list-group-item tree-closed\">";
+                str += "<span><i class=\"glyphicon glyphicon-th-large\"></i>"+item.menuname+"<span class=\"badge\" style=\"float:right\">"+item.childMenu.length+"</span></span>";
+                str += "<ul style=\"margin-top:10px;\">";
+                var childMenus = item.childMenu;
+                $(childMenus).each(function(indexChild,itemChild){
+                    str+= "<li style=\"height:30px;\">";
+                    str+= "<a href="+itemChild.menu_url+">"+itemChild.menuname+"</a>";
+                    str+= "</li>"
+                });
+                str += "</ul>";
+                str += "</li>";
+                $(".list-group").append(str);
+            })
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    })
+</script>
+<script>
+    function detection() {
+        $.ajax({
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType:"json",
+            //请求地址
+            url : "http://localhost:8080//getAdminInfo",
+            //请求成功
+            success : function(result) {
+                //alert(result);
+                if (result == -1) {
+                    window.location.href="reg_adminInfo.html";
+                }else {
+                    window.location.href="admin_info.html";
+                }
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+</script>
+</body>
+</html>

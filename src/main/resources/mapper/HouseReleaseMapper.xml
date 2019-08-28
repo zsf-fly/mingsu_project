@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.HouseReleaseMapper">
+    <!--添加房屋信息-->
+    <insert id="addHouseInfo" useGeneratedKeys="true" keyProperty="houseid" keyColumn="houseid" parameterType="com.qf.pojo.Houses" >
+        insert into houses(houseid,h_name,h_type,rent_type,h_price)
+        values(DEFAULT,#{h_name},#{h_type},#{rent_type},#{h_price})
+    </insert>
+
+    <!--添加房屋配置-->
+    <update id="upHouseAllocation" parameterType="com.qf.pojo.Houses">
+        update houses set people = #{people},bedroom = #{bedroom},bed = #{bed},bed_type = #{bed_type},toliet = #{toliet} where houseid = #{houseid}
+    </update>
+
+    <!--添加房屋位置-->
+    <insert id="addHouseAddress" parameterType="com.qf.pojo.HouseAddress">
+        insert into house_address(haid,houseid,provinces,city,county,address)
+        values(DEFAULT,#{houseid},#{provinces},#{city},#{county},#{address})
+    </insert>
+
+    <!--添加房屋照片-->
+    <insert id="pictureUpload" parameterType="com.qf.pojo.HousePicture">
+        insert into house_picture(hpid,houseid,picture)
+        values (DEFAULT,#{houseid},#{picture})
+    </insert>
+
+    <!--添加房屋照片时删除照片-->
+    <delete id="pictureDelete" parameterType="com.qf.pojo.HousePicture">
+        delete from house_picture where picture = #{picture}
+    </delete>
+
+    <!--添加房屋详情-->
+    <insert id="addHouseDetails" parameterType="com.qf.pojo.HouseDetails">
+        insert into house_details(hdid,houseid,sketch,spots,traffic)
+        values(DEFAULT,#{houseid},#{sketch},#{spots},#{traffic})
+    </insert>
+
+    <!--添加房屋便利设施-->
+    <insert id="addHouseAmenities" parameterType="com.qf.pojo.Amenities">
+        insert into amenities(amenityid,houseid,wifi,toiletries,television,air,refrigerator,desk,hairdryer,washer,hanger,iron,elevator)
+        values(DEFAULT,#{houseid},#{wifi},#{toiletries},#{television},#{air},#{refrigerator},#{desk},#{hairdryer},#{washer},#{hanger},#{iron},#{elevator})
+    </insert>
+
+    <!--添加房屋安全设施-->
+    <insert id="addHouseSafetyfacilities" parameterType="com.qf.pojo.Safetyfacilities">
+        insert into safetyfacilities(sfid,houseid,smokealarm,co_alam,first_aid_kit,extinguisher)
+        values(DEFAULT,#{houseid},#{smokealarm},#{co_alam},#{first_aid_kit},#{extinguisher})
+    </insert>
+
+    <!--添加房屋审核订单-->
+    <insert id="addAudit" parameterType="com.qf.pojo.Audit">
+        insert into audit(auditid,houseid,createtime,status)
+        values(DEFAULT,#{houseid},#{createtime},2)
+    </insert>
+
+</mapper>

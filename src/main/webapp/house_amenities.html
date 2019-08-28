@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>便利设施</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <style>
+        .nav_info{
+            height:80px;
+        }
+        .house_info{
+            width: 400px;
+        }
+        .nav_logo{
+            float: left;
+        }
+        .nav_logo img{
+            height: 60px;
+            width: 80px;
+            display: block;
+            fill: currentColor;
+            margin: 8px 30px;
+        }
+        .nav_text{
+            float: right;
+            font-size: 18px;
+        }
+        .nav_line {
+            background-color: #008489;
+            height: 2px;
+        }
+        a{
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .d5_1{
+            margin: 0px;
+            word-wrap: break-word;
+            font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1.25em;
+            color: #484848;
+            padding:30px 30px 20px 30px;
+        }
+        p{
+            padding-left: 30px;
+            padding-top: 10px;
+            font-size: 16px;
+        }
+        .d1_24{
+            padding: 20px 30px 16px 30px;
+            width: 600px;
+        }
+        .d1_24:before {
+            content: " ";
+            display: table;
+        }
+        .d1_25{
+            height: 1px;
+            box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08);
+            position: relative;
+            padding-bottom: 16px;
+            width: 520px;
+        }
+        .d1_25::before {
+            content: '';
+            height: 18px;
+            box-shadow: 0 -9px 15px -5px rgba(0, 0, 0, 0.09);
+            border-radius: 75%;
+            display: block;
+            position: absolute;
+            width: 100%;
+            z-index: -1;
+        }
+        .d1_26{
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+        .d1_28{
+            display: table;
+            width: 100%;
+            border-spacing: 0px;
+            height: 100%;
+        }
+        .d1_35{
+            display: table-cell;
+            width: 35%;
+            vertical-align: middle;
+        }
+        .d1_36{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .d1_next{
+            background-color: rgb(51, 122, 183);
+            border: none;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="nav_info">
+    <div class="house_info">
+        <div class="nav_logo">
+            <img src="images/pandalogo.jpg">
+        </div>
+        <div class="nav_text">
+            <h2>填写房屋基本信息</h2>
+        </div>
+    </div>
+</div>
+
+<ul class="nav nav-pills nav-justified">
+    <li><a href="">房屋信息</a></li>
+    <li><a href="">房屋配置</a></li>
+    <li><a href="">房屋位置</a></li>
+    <li><a href="">房屋详情</a></li>
+    <li class="active"><a href="">便利设施</a></li>
+    <li><a href="">完成发布</a></li>
+</ul>
+<div class="nav_line" style="width: 100%; left: 0%; max-width: 100%;"></div>
+
+<div class="d5">
+    <div class="d5_1">您提供的便利设施有哪些？</div>
+    <div class="d5_2">
+        <p><input type="checkbox" name="WIFI" id="wifi" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;WIFI</p>
+        <p><input type="checkbox" name="洗漱用品" id="toiletries" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;洗漱用品</p>
+        <p><input type="checkbox" name="电视" id="television" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;电视</p>
+        <p><input type="checkbox" name="空调" id="air" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;空调</p>
+        <p><input type="checkbox" name="冰箱" id="refrigerator" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;冰箱</p>
+        <p><input type="checkbox" name="书桌" id="desk" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;书桌</p>
+        <p><input type="checkbox" name="吹风机" id="hairdryer" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;吹风机</p>
+        <p><input type="checkbox" name="洗衣机" id="washer" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;洗衣机</p>
+        <p><input type="checkbox" name="衣架" id="hanger" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;衣架</p>
+        <p><input type="checkbox" name="熨斗" id="iron" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;熨斗</p>
+        <p><input type="checkbox" name="电梯" id="elevator" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;电梯</p>
+    </div>
+
+    <div class="d5_1">您提供的安全设施有哪些？</div>
+    <div class="d5_2">
+        <p><input type="checkbox" name="烟雾报警器" id="smokealarm" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;烟雾报警器</p>
+        <p><input type="checkbox" name="一氧化碳报警器" id="co_alam" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;一氧化碳报警器</p>
+        <p><input type="checkbox" name="急救包" id="first_aid_kit" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;急救包</p>
+        <p><input type="checkbox" name="灭火器" id="extinguisher" value="0" onclick="this.value=(this.value==0)?1:0"/>&ensp;&ensp;灭火器</p>
+    </div>
+
+    <div class="d1_24">
+        <div>
+            <div class="d1_25"></div>
+        </div>
+        <div class="d1_26" style="margin: 16px;">
+            <div class="d1_28">
+                    <div class="d1_35"></div>
+                    <div class="d1_36">
+
+                        <button class="d1_next" type="submit" onclick="addHouseAmenities();addHouseSafetyfacilities();addAudit()">下一个</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+    var id = window.location.search.split("=")[1];
+    function addHouseAmenities() {
+        var wifi = $("#wifi").val();
+        var toiletries = $("#toiletries").val();
+        var television = $("#television").val();
+        var air = $("#air").val();
+        var refrigerator = $("#refrigerator").val();
+        var desk = $("#desk").val();
+        var hairdryer = $("#hairdryer").val();
+        var washer = $("#washer").val();
+        var hanger = $("#hanger").val();
+        var iron = $("#iron").val();
+        var elevator = $("#elevator").val();
+
+        $.ajax({
+            //请求方式
+            type : "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType:"json",
+            //请求地址
+            url : "http://localhost:8080//addHouseAmenities",
+            //数据，json字符串
+            data : JSON.stringify(
+                {
+                    "wifi":$("#wifi").val(),
+                    "toiletries":$("#toiletries").val(),
+                    "television": $("#television").val(),
+                    "air":$("#air").val(),
+                    "refrigerator":$("#refrigerator").val(),
+                    "desk":$("#desk").val(),
+                    "hairdryer":$("#hairdryer").val(),
+                    "washer":$("#washer").val(),
+                    "hanger":$("#hanger").val(),
+                    "iron":$("#iron").val(),
+                    "elevator":$("#elevator").val(),
+                    "houseid":id
+                }
+            ),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+                if(result){
+                    window.location.href="house_complete.html?houseid="+id;
+                }
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+</script>
+<script>
+    var id = window.location.search.split("=")[1];
+    function addHouseSafetyfacilities() {
+        var smokealarm = $("#smokealarm").val();
+        var co_alam = $("#co_alam").val();
+        var first_aid_kit = $("#first_aid_kit").val();
+        var extinguisher = $("#extinguisher").val();
+
+        $.ajax({
+            //请求方式
+            type : "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType:"json",
+            //请求地址
+            url : "http://localhost:8080//addHouseSafetyfacilities",
+            //数据，json字符串
+            data : JSON.stringify(
+                {
+                    "smokealarm":$("#smokealarm").val(),
+                    "co_alam":$("#co_alam").val(),
+                    "first_aid_kit": $("#first_aid_kit").val(),
+                    "extinguisher":$("#extinguisher").val(),
+                    "houseid":id
+                }
+            ),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+</script>
+<script>
+    var id = window.location.search.split("=")[1];
+    function addAudit() {
+        var date = new Date();
+        var createtime = date.valueOf();
+        $.ajax({
+            //请求方式
+            type : "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType:"json",
+            //请求地址
+            url : "http://localhost:8080//addAudit",
+            //数据，json字符串
+            data : JSON.stringify(
+                {
+                    "createtime": createtime,
+                    "houseid":id
+                }
+            ),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+</script>
+</body>
+</html>

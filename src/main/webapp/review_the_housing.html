@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="GB18030">
+<head>
+    <meta charset="GB18030">
+    <title>房源审核</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/doc.min.css">
+    <link rel="stylesheet" href="ztree/zTreeStyle.css">
+    <style>
+        .tree li {
+            list-style-type: none;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div><a class="navbar-brand" style="font-size:32px;" href="#">名宿管理系统</a></div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <div class="tree">
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="glyphicon glyphicon-th"></i> 数据列表</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-inline" role="form" style="float:left;">
+                        <div class="form-group has-feedback">
+                            <div class="input-group">
+                                <div class="input-group-addon">审核状态</div>
+                                <input class="form-control has-success" type="text" placeholder="1已审核/2未审核" id="status">
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-warning" onclick="checkaudit()"><i class="glyphicon glyphicon-search" ></i> 查询</button>
+                    </form>
+                    <br>
+                    <hr style="clear:both;">
+                    <div class="table-responsive">
+                        <table class="table  table-bordered">
+                            <thead>
+                            <tr >
+                                <th width="30">#</th>
+                                <th>房主姓名</th>
+                                <th>房屋名字</th>
+                                <th>房屋详细地址</th>
+                                <th>房屋类型</th>
+                                <th>出租类型</th>
+                                <th>审核状态</th>
+                                <th>订单创建时间</th>
+                            </tr>
+                            </thead>
+                            <tbody id = "dataTable">
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="9" align="center">
+                                    <ul class="pagination">
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="script/docs.min.js"></script>
+<script src="ztree/jquery.ztree.all-3.5.min.js"></script>
+
+<script type="text/javascript">
+    $(".tree").load("menu.html")
+</script>
+
+<script>
+    Date.prototype.toLocaleString = function() {
+        return this.getFullYear() + "年" + (this.getMonth() + 1) + "月" + this.getDate() + "日 ";
+    };
+    function initPage() {
+        var pageNum = window.location.search.split("=")[1];
+        var requestURL = "selectAllAuditSingle";
+        if (pageNum == null) {
+            pageNum = 1;
+        } else {
+            requestURL += "?pageNum=" + pageNum;
+        }
+        $.ajax({
+            //请求方式
+            type: "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType: "json",
+            //请求地址
+            url: requestURL,
+            //请求成功
+            success: function (result) {
+                $("#dataTable").html("");
+                //alert(result);
+                console.log(result);
+                //2.将数据填充到table中
+                $(result.list).each(function (index, item) {
+                    var unixTimestamp = new Date(item.createtime);
+                    commonTime = unixTimestamp.toLocaleString();
+                    var trStr = "<tr id=" + item.auditid + ">";
+                    //获取id并拼接
+                    trStr += "<td>" + item.auditid + "</td>";
+                    trStr += "<td>" + item.h_name + "</td>";
+                    trStr += "<td>" +item.provinces+","+item.city+","+item.address+"</td>";
+                    trStr += "<td>" + item.h_type + "</td>";
+                    trStr += "<td>" + item.h_name + "</td>";
+                    trStr += "<td>" + item.rent_type + "</td>";
+                    trStr += "<td>" + item.status + "</td>";
+                    trStr += "<td>" + commonTime + "</td>";
+                    trStr += "</tr>";
+                    $("#dataTable").append(trStr);
+                });
+                if (pageNum == 1 && result.pages == 1) {
+                    var splitePageStr = "<li class=\"disabled\"><a href=\"#\">上一页</a></li>";
+                    for (var i = 1; i <= result.pages; i++) {
+                        splitePageStr += "<li><a href=\"review_the_housing.html?pageNum=" + i + "\">" + i + "</a></li>";
+                    }
+                    splitePageStr += "<li class=\"disabled\"><a href=\"#\">下一页</a></li>";
+                    $(".pagination").html("");
+                    $(".pagination").append(splitePageStr);
+                } else if (pageNum == 1) {
+                    var splitePageStr = "<li class=\"disabled\"><a href=\"#\">上一页</a></li>";
+                    for (var i = 1; i <= result.pages; i++) {
+                        splitePageStr += "<li><a href=\"review_the_housing.html?pageNum=" + i + "\">" + i + "</a></li>";
+                    }
+                    splitePageStr += "<li><a href=\"review_the_housing.html?pageNum=" + (parseInt(pageNum) + 1) + "\">下一页</a></li>";
+                    $(".pagination").html("");
+                    $(".pagination").append(splitePageStr);
+                } else if (pageNum == result.pages) {
+                    var splitePageStr = "<li><a href=\"review_the_housing.html?pageNum=" + (parseInt(pageNum) - 1) + "\">上一页</a></li>";
+                    for (var i = 1; i <= result.pages; i++) {
+                        splitePageStr += "<li><a href=\"review_the_housing.html?pageNum=" + i + "\">" + i + "</a></li>";
+                    }
+                    splitePageStr += "<li class=\"disabled\"><a href=\"#\">下一页</a></li>";
+                    $(".pagination").html("");
+                    $(".pagination").append(splitePageStr);
+                } else {
+                    var splitePageStr = "<li><a href=\"review_the_housing.html?pageNum=" + (parseInt(pageNum) - 1) + "\">上一页</a></li>";
+                    for (var i = 1; i <= result.pages; i++) {
+                        splitePageStr += "<li><a href=\"review_the_housing.html?pageNum=" + (parseInt(pageNum) + 1) + "\">" + i + "</a></li>";
+                    }
+                    splitePageStr += "<li><a href=\"#\">下一页</a></li>";
+                    $(".pagination").html("");
+                    $(".pagination").append(splitePageStr);
+                }
+            },
+            //请求失败，包含具体的错误信息
+            error: function (e) {
+
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+    initPage();
+
+    /*根据审核状态查询订单*/
+    function checkaudit() {
+        if ($("#status").val()==null||$("#status").val()==""){
+            initPage();
+        }else {
+            var requestURL = "checkaudit";
+            $.ajax({
+                //请求方式
+                type: "POST",
+                //请求的媒体类型
+                contentType: "application/json;charset=UTF-8",
+                //接受数据类型
+                dataType: "json",
+                //请求地址
+                url: requestURL,
+                data: JSON.stringify(
+                    {
+                        "status": $("#status").val()
+                    }
+                ),
+                //请求成功
+                success: function (result) {
+                    $("#dataTable").html("");
+                    console.log(result);
+                    //2.将数据填充到table中
+                    $(result).each(function (index, item) {
+                        var unixTimestamp = new Date(item.createtime);
+                        commonTime = unixTimestamp.toLocaleString();
+                        var trStr = "<tr id=" + item.auditid + ">";
+                        //获取id并拼接
+                        trStr += "<td>" + item.auditid + "</td>";
+                        trStr += "<td>" + item.h_name + "</td>";
+                        trStr += "<td>" + item.provinces+","+item.city+","+item.address + "</td>";
+                        trStr += "<td>" + item.h_type + "</td>";
+                        trStr += "<td>" + item.h_name + "</td>";
+                        trStr += "<td>" + item.rent_type + "</td>";
+                        trStr += "<td>" + item.status + "</td>";
+                        trStr += "<td>" + commonTime + "</td>";
+                        trStr += "</tr>";
+                        $("#dataTable").append(trStr);
+                    });
+                    $(".pagination").html("");
+                },
+                error: function (e) {
+                    console.log(e.status);
+                    console.log(e.responseText);
+                }
+            });
+        }
+    }
+</script>
+</body>
+</html>

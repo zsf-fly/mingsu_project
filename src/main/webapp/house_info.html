@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>房屋信息</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+<style>
+    .nav_info{
+        height:80px;
+    }
+    .house_info{
+        width: 400px;
+
+    }
+    .nav_logo{
+        float: left;
+    }
+    .nav_logo img{
+        height: 60px;
+        width: 80px;
+        display: block;
+        fill: currentColor;
+        margin: 8px 30px;
+    }
+    .nav_text{
+        float: right;
+        font-size: 18px;
+    }
+    .nav_line {
+        background-color: #008489;
+        height: 2px;
+    }
+    a{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .d11{
+        padding: 0px 30px 16px 30px;
+    }
+    .d1{
+        border-bottom: 0px;
+        padding-top: 32px;
+        padding-bottom: 0px;
+    }
+    .d1_1{
+        margin: 0px;
+        word-wrap: break-word;
+        font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+        font-size: 24px;
+        font-weight: 800;
+        line-height: 1.25em;
+        color: #484848;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+    .d1_2{
+        overflow-wrap: break-word;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 1.44444em;
+        color: rgb(72, 72, 72);
+        margin: 0px;
+    }
+    .d1_3{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0px -8px;
+        width: 520px;
+    }
+    .d1_3_2{
+        cursor: pointer;
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        user-select: none;
+        width: calc(25% - 16px);
+        text-align: center;
+        font-size: 14px;
+        color: rgb(72, 72, 72);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 9px 8px;
+        background: rgb(242, 242, 242);
+        border-radius: 4px;
+        transition: all 0.2s ease 0s;
+        padding: 7px 0px;
+    }
+    .d1_3_2_1{
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        user-select: none;
+        width: calc(25% - 16px);
+        text-align: center;
+        font-size: 14px;
+        color: rgb(72, 72, 72);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 9px 8px;
+        border-radius: 4px;
+        transition: all 0.2s ease 0s;
+        padding: 7px 0px;
+        background: rgb(51, 122, 183);
+    }
+    .d1_4{
+        overflow-wrap: break-word;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 1.44444em;
+        color: rgb(72, 72, 72);
+        margin: 0px;
+    }
+    .d1_6{
+        cursor: pointer;
+        user-select: none;
+        margin: 9px 8px;
+        background: rgb(242, 242, 242);
+        border-radius: 4px;
+        transition: all 0.2s ease 0s;
+    }
+    .d1_6_1{
+        user-select: none;
+        margin: 9px 8px;
+        border-radius: 4px;
+        transition: all 0.2s ease 0s;
+        background: rgb(51, 122, 183);
+    }
+    .d1_7{
+        overflow-wrap: break-word;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.375em;
+        color: rgb(72, 72, 72);
+        margin: 0px;
+    }
+    .d1_8{
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 18px;
+        letter-spacing: normal;
+        color: rgb(72, 72, 72);
+        margin: 0px;
+    }
+    .d1_9{
+        background-color: #ffffff;
+        padding-bottom: 10px;
+        width: 60%;
+    }
+    .d1_10{
+        font-size: 19px;
+        padding: 0px 30px 16px 30px;
+    }
+    .d1_11{
+        border-bottom: 0px;
+        padding-top: 0px;
+        padding-bottom: 24px;
+    }
+    .d1_12{
+        margin: 0px;
+        word-wrap: break-word;
+        font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+        font-size: 24px;
+        font-weight: 800;
+        line-height: 1.25em;
+        color: #484848;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+    .d1_13{
+        overflow-wrap: break-word;
+        font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1.375em ;
+        color: rgb(72, 72, 72);
+        margin: 0px ;
+    }
+    input{
+        outline-style: none ;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 16px 16px;
+        width: 520px;
+        font-size: 18px;
+        font-family: "微软雅黑";
+    }
+    .d1_15{
+        margin-top: 15px;
+        font-size: 16px;
+        width: 520px;
+    }
+    .d1_16{
+        font-size: 19px;
+        padding: 10px 10px 16px 30px;
+    }
+    .d1_17{
+        border-bottom: 0px;
+        padding-top: 0px;
+        padding-bottom: 10px;
+    }
+    .d1_18{
+        margin: 0px;
+        word-wrap: break-word ;
+        font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+        font-size: 24px;
+        font-weight: 800;
+        line-height: 1.25em;
+        color: #484848;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+    .d1_19{
+        cursor: pointer;
+        display: block;
+        background: transparent;
+        border-width: 0px;
+        border-style: initial;
+        border-color: initial;
+        border-image: initial;
+        padding: 0px;
+    }
+    .d1_20{
+        margin: 0px;
+        word-wrap: break-word;
+        font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.375em;
+        color: #484848;
+    }
+    .d1_24{
+        padding: 30px 30px 16px 30px;
+        width: 600px;
+    }
+    .d1_24:before {
+        content: " ";
+        display: table;
+    }
+    .d1_25{
+        height: 1px;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08);
+        position: relative;
+        padding-bottom: 16px;
+        width: 520px;
+    }
+    .d1_25::before {
+        content: '';
+        height: 18px;
+        box-shadow: 0 -9px 15px -5px rgba(0, 0, 0, 0.09);
+        border-radius: 75%;
+        display: block;
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+    }
+    .d1_26{
+        margin-top: 0px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .d1_28{
+        display: table;
+        width: 100%;
+        border-spacing: 0px;
+        height: 100%;
+    }
+    .d1_35{
+        display: table-cell;
+        width: 35%;
+        vertical-align: middle;
+    }
+    .d1_36{
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .d1_next{
+        background-color: rgb(51, 122, 183);
+        border: none;
+        color: white;
+        padding: 10px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 2px;
+    }
+
+</style>
+
+</head>
+<body>
+<div class="nav_info">
+    <div class="house_info">
+        <div class="nav_logo">
+            <img src="images/pandalogo.jpg">
+        </div>
+        <div class="nav_text">
+            <h2>填写房屋基本信息</h2>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-pills nav-justified">
+    <li class="active"><a href="">房屋信息</a></li>
+    <li><a href="">房屋配置</a></li>
+    <li><a href="">房屋位置</a></li>
+    <li><a href="">房屋详情</a></li>
+    <li><a href="">便利设施</a></li>
+    <li><a href="">完成发布</a></li>
+</ul>
+<div class="nav_line" style="width: 100%; left: 0%; max-width: 100%;"></div>
+
+<div class="d11">
+<section>
+    <div class="d1">
+        <div class="d1_1">您打算出租什么样的房子？</div>
+    </div>
+    <section>
+        <div style="margin-top: 24px;">
+            <div class="d1_2">房源类型</div>
+                <div style="margin-top: 16px;margin-bottom: 16px;">
+                    <div style="margin-top: 16px;margin-bottom: 16px;">
+                        <div class="d1_3" id="house_type">
+                            <div class="d1_3_2">公寓型住宅</div>
+                            <div class="d1_3_2">独栋房</div>
+                            <div class="d1_3_2">别墅</div>
+                            <div class="d1_3_2">Loft</div>
+                            <div class="d1_3_2">酒店</div>
+                            <div class="d1_3_2">酒店式公寓</div>
+                            <div class="d1_3_2">精品酒店</div>
+                            <div class="d1_3_2">青年旅舍</div>
+                            <div class="d1_3_2">农家乐</div>
+                            <div class="d1_3_2">度假村</div>
+                            <div class="d1_3_2">乡村小屋</div>
+                            <div class="d1_3_2">客栈</div>
+                            <div class="d1_3_2">蒙古包</div>
+                            <div class="d1_3_2">平房</div>
+                            <div class="d1_3_2">联排别墅</div>
+                            <div class="d1_3_2">木屋</div>
+                            <div class="d1_3_2">房车</div>
+                            <div class="d1_3_2">帐篷</div>
+                            <div class="d1_3_2">露营地</div>
+                            <div class="d1_3_2">树屋</div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="d1_4">出租类型</div>
+        <div style="margin-top: 16px;margin-bottom: 16px;">
+        <div class="d1_3" id="rent_type">
+            <div class="d1_6" style="padding: 16px; width: calc(33.33% - 16px);">
+                <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" style="height: 24px; width: 24px; display: block; fill: currentcolor;"><path d="m23.57 11.4-1.75-1.76-3.85-3.87-1.78-1.79-2.7-2.71-.82-.83-.22-.23-.06-.06c-.22-.22-.53-.22-.73-.02l-1.75 1.76-3.85 3.87-3.85 3.87-1.75 1.76a1.49 1.49 0 0 0 -.44 1.05v.01c0 .38.15.77.44 1.06l.55.55a1.49 1.49 0 0 0 2.01.08v8.4c0 .81.68 1.45 1.5 1.45h15c .82 0 1.5-.65 1.5-1.45v-8.4c.59.49 1.45.47 2.01-.08l.55-.55c.29-.29.44-.68.44-1.06v-.01c0-.38-.14-.77-.44-1.06zm-3.57 11.16c0 .24-.22.45-.5.45h-15c-.28 0-.5-.21-.5-.45v-9.36l8-7.99 8 7.99zm2.85-9.74-.55.55c-.2.2-.52.2-.71.01l-9.24-9.22a.5.5 0 0 0 -.71 0l-9.24 9.22a.5.5 0 0 1 -.71-.01l-.55-.55a.5.5 0 0 1 -.01-.71l1.75-1.76 3.85-3.87 3.85-3.87 1.4-1.4.77.77 2.7 2.71 1.78 1.79 3.85 3.87 1.75 1.76a.51.51 0 0 1 -.01.71z" fill-rule="evenodd"></path></svg>
+                <div style="margin-top: 8px">
+                    <div class="d1_7"><p class="d10">整个房源</p></div>
+                    <div class="d1_8">房客独享整个房源，无需与您或他人共住</div>
+                </div>
+            </div>
+
+            <div class="d1_6" style="padding: 16px; width: calc(33.33% - 16px);">
+                <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" style="height: 24px; width: 24px; display: block; fill: currentcolor;"><path d="m17.5 17a .5.5 0 0 0 -.5.5v2.11c0 .22-.16.39-.33.39h-3.67v-15.03a.5.5 0 0 0 -.32-.47 477.53 477.53 0 0 0 -1.9-.73 737.69 737.69 0 0 0 -4.22-1.61l-.27-.1c-1.08-.4-2.03-.75-2.87-1.06h13.19c.22 0 .39.18.39.41v4.09a.5.5 0 0 0 1 0v-4.09c0-.78-.62-1.41-1.39-1.41h-16.11c-.02 0-.03.01-.05.01a.48.48 0 0 0 -.36.22c-.01.02-.03.04-.04.06a.49.49 0 0 0 -.05.21v17.8c0 .76.56 1.55 1.27 1.81l10.12 3.77c.85.32 1.62-.21 1.62-1.11v-1.77h3.67c.73 0 1.32-.63 1.32-1.39v-2.11a.5.5 0 0 0 -.5-.5zm-5.5 5.77c0 .2-.07.25-.27.18l-10.11-3.78c-.32-.12-.62-.54-.62-.88v-17.09c1.1.38 2.79 1 4.94 1.81l.27.1a738.69 738.69 0 0 1 5.79 2.21zm-2-11.27v3a .5.5 0 0 1 -1 0v-3a .5.5 0 1 1 1 0zm10-1.41v-.59a2.5 2.5 0 1 0 -5 0v .59a1.5 1.5 0 0 0 -1 1.41v3c0 .83.67 1.5 1.49 1.5h4.02a1.5 1.5 0 0 0 1.49-1.5v-3c0-.66-.42-1.21-1-1.41zm-4-.59a1.5 1.5 0 0 1 3 0v .5h-3zm4 5a .5.5 0 0 1 -.49.5h-4.02a.49.49 0 0 1 -.49-.5v-3a .5.5 0 0 1 .49-.5h4.02c.27 0 .49.22.49.5z" fill-rule="evenodd"></path></svg>
+                <div style="margin-top: 8px">
+                    <div class="d1_7"><p class="d10">独立房间</p></div>
+                    <div class="d1_8">房客有自己的独立房间，与他人共享客厅等空间</div>
+                </div>
+            </div>
+
+            <div class="d1_6" style="padding: 16px; width: calc(33.33% - 16px);">
+                <svg viewBox="0 0 24 24" role="presentation" aria-hidden="true" focusable="false" style="height: 24px; width: 24px; display: block; fill: currentcolor;"><path d="m21.5 8c-.17 0-.34.02-.5.04v-2.54a2.5 2.5 0 0 0 -2.5-2.5h-13a2.5 2.5 0 0 0 -2.5 2.5v2.54a3.32 3.32 0 0 0 -.5-.04c-1.47 0-2.49.84-2.5 2.5-.01.81.22 1.37.65 1.79.09.09.29.26.35.32-.01.17-.02.65-.02 1.37a184.39 184.39 0 0 0 .01 1.54c.01.83.68 1.49 1.51 1.49h1.5v1.49c0 .89.68 1.5 1.5 1.5.86 0 1.5-.6 1.5-1.5v-1.5h10v1.5c0 .9.68 1.5 1.5 1.5s1.5-.6 1.5-1.5v-1.5h1.51c.83 0 1.5-.67 1.5-1.5v-2.89c.08-.06.26-.2.34-.28.43-.4.65-.98.65-1.84 0-1.54-1.09-2.49-2.5-2.49zm-17.5-2.5c0-.83.67-1.5 1.5-1.5h13c .83 0 1.5.67 1.5 1.5v2.94c-.61.42-1 1.12-1 2.06v1.49c0 .01-14 .01-14 .01v-1.5c0-.98-.38-1.68-1-2.09zm2 13c0 .33-.18.5-.5.5-.29 0-.5-.19-.5-.5v-1.5h1zm13 0c0 .32-.21.5-.5.5-.3 0-.5-.18-.5-.5v-1.5h1zm3.66-6.89c-.06.06-.32.25-.35.27-.19.16-.31.35-.31.61v3.01a.5.5 0 0 1 -.5.5h-19a .5.5 0 0 1 -.51-.5 198.01 198.01 0 0 1 -.01-1.53c0-.75 0-1.28.02-1.43-.02-.3-.11-.46-.26-.62-.06-.06-.32-.28-.38-.34-.24-.24-.36-.54-.36-1.08.01-1.06.54-1.5 1.5-1.5.94 0 1.5.47 1.5 1.5v1.5c0 .56.45 1 1 1h14c .56 0 1-.45 1-1.01v-1.49c0-.98.6-1.5 1.5-1.5.89 0 1.5.53 1.5 1.5 0 .6-.12.91-.34 1.11z" fill-rule="evenodd"></path></svg>
+                <div style="margin-top: 8px">
+                    <div class="d1_7"><p class="d10">合租房间</p></div>
+                    <div class="d1_8">房客住在与他人合用的卧室或公共区域</div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</section>
+</div>
+
+<div class="d1_9">
+    <div class="d1_10">
+        <section>
+            <div class="d1_11">
+                <div id="FMP-target" class="d1_12">为您的房源起个名字</div>
+            </div>
+            <div>
+                <div style="margin-top: -20px; margin-bottom: 32px;">
+                    <div class="d1_13">为房源起一个能突出其独特之处的标题，吸引更多房客。</div>
+                </div>
+                <div class="d1_14">
+                    <input type="text" id="house_name">
+                </div>
+            </div>
+        <p class="d1_15">好的房源标题可以增加房客的点击率，房屋名称可包含地标、位置、附近交通、房屋特色等信息。</p>
+        </section>
+    </div>
+</div>
+
+<div class="d1_16">
+    <section>
+        <div class="d1_17">
+            <div id="FMP-target0" class="d1_18">为房源定价</div>
+        </div>
+        <label class="d1_19">
+            <div class="d1_20">价格</div>
+        </label>
+        <div dir="ltr">
+            <div class="d1_21">
+
+                <div class="d1_22">
+                    <input autocomplete="off" class="d1_23" maxlength="12" type="tel" id="house_price" oninput="value=value.replace(/[^\d]/g,'')">
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="d1_24">
+    <div>
+        <div class="d1_25"></div>
+    </div>
+    <div class="d1_26" style="margin: 16px;">
+        <div class="d1_28">
+            <div class="d1_35"></div>
+            <div class="d1_36">
+                <button class="d1_next" type="submit" onclick="addHouseInfo()">下一个</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $('.d1_3_2').on('click',function(){
+        var $div = $(this);
+        var $others = $div.siblings();
+        if($div.hasClass('d1_3_2')){
+            $div.removeClass('d1_3_2').addClass('d1_3_2_1');
+        }else {
+            $div.removeClass('d1_3_2_1').addClass('d1_3_2');
+        }
+        $others.addClass('d1_3_2').removeClass('d1_3_2_1');
+    });
+    $('.d1_6').on('click',function(){
+        var $div = $(this);
+        var $others = $div.siblings();
+        if($div.hasClass('d1_6')){
+            $div.removeClass('d1_6').addClass('d1_6_1');
+        }else {
+            $div.removeClass('d1_6_1').addClass('d1_6');
+        }
+        $others.addClass('d1_6').removeClass('d1_6_1');
+    });
+
+    function addHouseInfo() {
+        var house_type = $(".d1_3_2_1").text();
+        var rent_type = $(".d1_6_1 p").text();
+        var house_name = $("#house_name").val();
+        var house_price = $("#house_price").val();
+
+        $.ajax({
+            //请求方式
+            type : "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType:"json",
+            //请求地址
+            url : "http://localhost:8080//addHouseInfo",
+            //数据，json字符串
+            data : JSON.stringify(
+                {
+                    "h_type":$(".d1_3_2_1").text(),
+                    "rent_type":$(".d1_6_1 p").text(),
+                    "h_name":$("#house_name").val(),
+                    "h_price":$("#house_price").val(),
+                }
+            ),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+                if(result>0){
+                    window.location.href="house_allocation.html?houseid="+result;
+                }else{
+                    alert("添加失败")
+                }
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+</script>
+</body>
+</html>
