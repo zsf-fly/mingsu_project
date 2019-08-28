@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.OrderInfoMapper">
+
+    <!--展示详情页房源信息（预定页）-->
+    <select id="getOrderInfo" resultType="com.qf.vo.OrderInfoVO" parameterType="int" >
+    select * from houses a,house_details b,house_address c,house_picture d,safetyfacilities e,amenities f
+    where a.houseid=b.houseid and b.houseid=c.houseid and d.houseid=c.houseid and  e.houseid=d.houseid and  e.houseid=f.houseid and a.houseid=#{id}
+   </select>
+
+    <!--生成订单信息(添加订单信息)-->
+    <insert id="addOrderInfo" parameterType="com.qf.pojo.ToOrderInfo" >
+        insert into orders(orderid,userid,houseid,checkin_data,checkout_data,total_price,createtime) values (DEFAULT,#{userid},#{houseid},#{checkin_data},#{checkout_data},#{total_price},#{createtime})
+    </insert>
+
+</mapper>

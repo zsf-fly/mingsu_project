@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>民宿主页</title>
     <head>
         <meta charset="GB18030">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +21,7 @@
             table tbody tr:nth-child(odd){background:#F4F4F4;}
             table tbody td:nth-child(even){color:#C00;}
         </style>
+
     </head>
 </head>
 
@@ -39,76 +40,70 @@
     <a href="login.html">出租房源</a>
     <a href="login.html">服务</a>
 </div>
+
+
 <header id="header">
+
     <div class="top_banner">
         <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3742233776,2068776894&fm=26&gp=0.jpg">
         <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1018153081,1889499588&fm=26&gp=0.jpg">
     </div>
-    <div class="shortcut">
-        <!-- 未登录状态  -->
 
-        <!-- 登录状态  -->
+    <div class="shortcut">
+
         <div class="login">
 
             <span id="span_username"></span>
-            <!--<a href="myfavorite.html" class="collection">我的收藏</a>-->
-            <!--<a href="javascript:location.href='exitServlet';">退出</a>-->
+
         </div>
     </div>
     <div class="header_wrap">
         <div class="topbar">
-            <!--<div class="logo">-->
-            <!--<a href="/"><img src="images/logo.jpg" alt=""></a>-->
-            <!--</div>-->
-            <div class="search">
-                <select class="search_input" autocomplete="off"   id="options"  >
-                    <option >请选择</option>
-                    <option  id="one" value="国内游">西安</option>
-                    <option id="two" value="境外游">成都</option>
-                    <option id="three" value="酒店">重庆</option>
-                    <option id="four" value="景点">上海</option>
 
-                </select>
-                <!--<input name=""  id="find"  type="text" placeholder="请输入关键字" class="search_input" autocomplete="off">-->
-                <!--<span  onclick="search()" class="search-button" id="search">搜索</span>-->
-                <div class="input-group">
-                    <div class="input-group-addon">名称</div>
-                    <input class="form-control has-success" type="text" placeholder="请输入查询名称" id="usernameInput">
-                    <div class="input-group-addon">位置</div>
-                    <input class="form-control has-success" type="text" placeholder="请输入查询位置" id="emailInput">
+            <div>
+            <div class="table-responsive">
+
+                <div>
+                    <form class="form-inline" role="form" style="float:left;">
+                        <div class="form-group has-feedback">
+                            <div class="input-group">
+                                <div class="input-group-addon">城市</div>
+                                <input class="form-control has-success" type="text" placeholder="请输入查询城市" id="cityInput">
+                                <div class="input-group-addon">民宿类型</div>
+                                <select class="form-control has-success" type="text" placeholder="请输入查询名宿类型" id="h_typeInput">
+                                    <option   value=""></option>
+                                    <option   value="公寓型住宅">公寓型住宅</option>
+                                    <option  value="独栋房">独栋房</option>
+                                    <option   value="Loft">Loft</option>
+                                    <option  value="酒店">酒店</option>
+                                    <option   value="酒店式公寓">酒店式公寓</option>
+                                    <option  value="精品酒店">精品酒店</option>
+                                    <option   value="青年旅舍">青年旅舍</option>
+                                    <option  value="农家乐">农家乐</option>
+                                    <option   value="度假村">度假村</option>
+                                    <option  value="乡村小屋">乡村小屋</option>
+                                    <option   value="客栈">客栈</option>
+                                    <option  value="蒙古包">蒙古包</option>
+                                    <option   value="平房">平房</option>
+                                    <option  value="联排别墅">联排别墅</option>
+                                    <option   value="木屋">木屋</option>
+                                    <option  value="房车">房车</option>
+                                    <option  value="帐篷">帐篷</option>
+                                    <option   value="露营地">露营地</option>
+                                    <option  value="树屋">树屋</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-warning" onclick="initPage()"><i class="glyphicon glyphicon-search"></i> 查询</button>
+                    </form>
                 </div>
 
-            </div>
-            <div class="table-responsive">
-                <table class="table  table-bordered" id="dataTable">
-                    <!--<thead>-->
-                    <!--<tr >-->
-                        <!--<th width="30">#</th>-->
-                        <!--<th width="30"><input type="checkbox"></th>-->
-                        <!--<th>图片</th>-->
-                        <!--<th>位置</th>-->
-                        <!--<th>描述</th>-->
-                        <!--<th>价格</th>-->
-                        <!--<th width="100">评价</th>-->
-                    <!--</tr>-->
-                    <!--</thead>-->
-                    <!--<tbody>-->
-                    <!--<tr>-->
-                        <!--<td>1</td>-->
-                        <!--<td><input type="checkbox"></td>-->
-                        <!--<td>Lorem</td>-->
-                        <!--<td>ipsum</td>-->
-                        <!--<td>dolor</td>-->
-                        <!--<td>dolor</td>-->
-                        <!--<td>dolor</td>-->
-                        <!--&lt;!&ndash;<td>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<button type="button" class="btn btn-success btn-xs"><i class=" glyphicon glyphicon-check"></i></button>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<button type="button" class="btn btn-primary btn-xs"><i class=" glyphicon glyphicon-pencil"></i></button>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<button type="button" class="btn btn-danger btn-xs"><i class=" glyphicon glyphicon-remove"></i></button>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</td>&ndash;&gt;-->
-                    <!--</tr>-->
+                <table class="table  table-bordered" >
 
-                    <!--</tbody>-->
+                    <tbody id="dataTable">
+
+
+                    </tbody>
                     <tfoot>
                     <tr >
                         <td colspan="6" align="center">
@@ -127,66 +122,19 @@
                     </tfoot>
                 </table>
             </div>
-            <!--<div class="hottel">-->
-            <!--<div class="hot_pic">-->
-            <!--<img src="images/hot_tel.jpg" alt="">-->
-            <!--</div>-->
-            <!--<div class="hot_tel">-->
-            <!--<p class="hot_time">客服热线(9:00-6:00)</p>-->
-            <!--<p class="hot_num">400-618-9090</p>-->
-            <!--</div>-->
-            <!--</div>-->
+            </div>
+
         </div>
     </div>
 </header>
-<!-- 头部 end -->
-<!-- 首页导航 -->
-<!--<div class="navitem">-->
-<!--<ul class="nav">-->
-<!--<li class="nav-active"><a href="index.html">首页</a></li>-->
-<!--<li><a href="china.html">出租房源</a></li>-->
-<!--<li><a href="foreign.html">境外游</a></li>-->
-<!--<li><a href="scenic.html">景点</a></li>-->
-<!--<li><a href="hotel.html">酒店</a></li>-->
-<!--<li><a href="service.html">服务</a></li>-->
-<!--<li><a href="personal.html">个人中心</a></li>-->
-<!--<li><a href="about.html">关于本站</a></li>-->
-<!--<li><a href="favoriterank.html">热门线路</a></li>-->
-<!--</ul>-->
-<!--</div>-->
 
-<script>
-    function search(){
-        var selected = $("#options option:selected").val();
-        if(selected=="国内游"){
-            window.location.href="chinasearch.html";
-
-        }
-        if(selected=="境外游"){
-
-            window.location.href="foreignsearch.html";
-
-
-        }
-        if(selected=="酒店"){
-
-            window.location.href="hotelsearch.html";
-
-
-        }
-        if(selected=="景点"){
-            var value = $("#find").val();
-            window.location.href="scenicsearch.html";
-
-        }
-    }
-</script>
 
 <script>
     function initPage(){
+        // var pageNum = window.location.search.split("=")[1];
         $.ajax({
             //请求方式
-            type : "GET",
+            type : "POST",
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //接受数据类型
@@ -195,40 +143,65 @@
             //url : "http://localhost:8080//getHousePicture",
             url : "http://localhost:8080//getHouseInfo",
             //数据，json字符串
-            // data : JSON.stringify(
-            //     {
-            //         "username": $("#usernameInput").val(),
-            //         "email": $("#emailInput").val()
-            //     }
-            // ),
-            //请求成功
+            data : JSON.stringify(
+                {
+                    "city": $("#cityInput").val().replace(/\s*/g,""),
+                    "h_type": $("#h_typeInput").val().replace(/\s*/g,""),
+                      // "pageNum":pageNum
+                }
+            ),
+          //请求成功
             success : function(result) {
-                // $("#dataTable tbody").html("");
-                //  console.log(result);
-                //2.将数据填充到table中
-                $(result).each(function(index,item){
-                    console.log(item);
+                console.log(result);
+            if (result!=null&&result!="")
+                {
+                    $("#dataTable").html("");
+                     // console.log(result);
+                    //2.将数据填充到table中
                     var trStr = "<tr>";
-                    //获取id并拼接
+                    var a;
+                    $(result).each(function (index, item) {
+                        if (index==0){
+                            trStr += "<td><img src=\"" + item.picture + "\" onclick='toOrder(" + item.houseid + ")'></td>";
+                            trStr += "<td>" + item.h_price + "元" + "</td>";
+                            trStr += "<td>" + item.h_type + "</td>";
+                            trStr += "<td>" + item.city + "</td>";
+                            trStr += "<td>" + item.sketch + "</td>";
+                            trStr += "</tr>";
+                            //$("#dataTable").append(trStr);
+                            a=item.houseid;
+                        } else if(item.houseid!=a) {
+                            trStr += "<td><img src=\"" + item.picture + "\" onclick='toOrder(" + item.houseid + ")'></td>";
+                            trStr += "<td>" + item.h_price + "元" + "</td>";
+                            trStr += "<td>" + item.h_type + "</td>";
+                            trStr += "<td>" + item.city + "</td>";
+                            trStr += "<td>" + item.sketch + "</td>";
+                            trStr += "</tr>";
+                            //$("#dataTable").append(trStr);
+                            a = item.houseid;
+                        }
+                        $("#dataTable").html(trStr);
+                    });
 
-                    trStr+="<td><img src=\""+item.picture1+"\"></td>";
-                    trStr+="<td>"+item.h_price+"</td>";
-                    trStr+="<td>"+item.sketch+"</td>";
 
-                    trStr+="</tr>";
-                    $("#dataTable").append(trStr);
 
-                });
-
+                }else {  alert("对不起，查询失败");}
             },
             //请求失败，包含具体的错误信息
             error : function(e){
+
                 console.log(e.status);
                 console.log(e.responseText);
             }
         });
     }
     initPage();
+
+    function toOrder(houseid) {
+        alert(houseid)
+        window.location.href="order.html?houseid="+houseid;
+    }
+
 </script>
 </body>
 </html>
