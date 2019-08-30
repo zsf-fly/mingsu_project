@@ -25,8 +25,11 @@ public class HouseReleaseController {
 
     //添加房屋信息
     @RequestMapping("addHouseInfo")
-    public Object addHouseInfo(@RequestBody Houses houses){
-       houseReleaseService.addHouseInfo(houses);
+    public Object addHouseInfo(@RequestBody(required = false) Houses houses,HttpSession httpSession){
+        UserAccount userAccount = (UserAccount) httpSession.getAttribute("userAccount");
+        int userid = userAccount.getUserid();
+        houses.setUserid(userid);
+        houseReleaseService.addHouseInfo(houses);
        int id = houses.getHouseid();
        return id;
     }

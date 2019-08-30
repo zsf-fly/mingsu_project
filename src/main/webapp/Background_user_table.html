@@ -28,6 +28,15 @@
         <div class="navbar-header">
             <div><a class="navbar-brand" style="font-size:32px;" href="#">名宿管理系统</a></div>
         </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li style="padding-top:8px;">
+                    <div class="btn-group">
+                        <a href="login.html"><i class="glyphicon glyphicon-off">退出系统</i></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -115,7 +124,7 @@
                 //请求成功
                 success: function (result) {
                     $("#dataTable").html("");
-                    //console.log(result);
+                    console.log(result);
                     //2.将数据填充到table中
                     $(result.list).each(function (index, item) {
                         var trStr = "<tr id="+item.userid+">";

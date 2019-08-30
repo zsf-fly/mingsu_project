@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户个人信息页</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <div class="tree">
+                <ul style="padding-left:0px;" class="list-group">
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="panel panel-default">
+                <div class="panel-heading">个人信息数据<div style="float:right;cursor:pointer;" data-toggle="modal" data-target="#myModal"><i class=""><a href="main.html">return</a>&ensp;<a href="reg_userinfo.html">修改</a></i></div></div>
+                <div class="panel-body">
+                    <form role="form" id="manage">
+                        <div class="form-group" align="center">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="script/docs.min.js"></script>
+
+<script>
+    $(function () {
+        $.ajax({
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType:"json",
+            //请求地址
+            url : "http://localhost:8080//selectUserInfoById",
+            //请求成功
+            success : function(result) {
+                if (result==-1){
+                    window.location.href="login.html"
+                } else if (result==0) {
+                    window.location.href="reg_userinfo.html";
+                } else {
+                    console.log(result);
+                    //2.将数据填充到from中
+                    $("#manage").html("");
+                    var trStr = "<div class=\"form-group\" align=\"center\" style='height: 150px'>";
+                    trStr+="<label>";
+                    trStr+="<input style='background-image:url("+result.user_avatar+");background-size: auto;background-repeat:no-repeat;background-position:center;width:175px;height:140px;border:none;' class=\"form-control\">";
+                    trStr+="</label>";
+                    trStr+="</div>";
+                    trStr+="<br>";
+
+                    trStr+="<div class=\"form-group\" align=\"center\" style='height: 50px'>";
+                    trStr+="<label>";
+                    trStr+="<input type=\"text\"  class=\"form-control\" value='用户姓名:"+result.user_name+"'>";
+                    trStr+="</label>";
+                    trStr+="</div>";
+
+                    trStr+="<div class=\"form-group\" align=\"center\" style='height: 50px'>";
+                    trStr+="<label>";
+                    trStr+="<input type=\"text\"  class=\"form-control\" value='用户性别:"+result.user_sex+"'>";
+                    trStr+="</label>";
+                    trStr+="</div>";
+
+                    trStr+="<div class=\"form-group\" align=\"center\"style='height: 50px'>";
+                    trStr+="<label>";
+                    trStr+="<input type=\"text\"  class=\"form-control\" value='用户邮件:"+result.user_email+"'>";
+                    trStr+="</label>";
+                    trStr+="</div>";
+
+                    trStr+="<div class=\"form-group\" align=\"center\" style='height: 50px'>";
+                    trStr+="<label>";
+                    trStr+="<input type=\"text\"  class=\"form-control\" value='用户手机号:"+result.user_phone+"'>";
+                    trStr+="</label>";
+                    trStr+="</div>";
+
+                    trStr+="<div class=\"form-group\" align=\"center\" style='height: 50px'>";
+                    trStr+="<label>";
+                    trStr+="<input type=\"text\"  class=\"form-control\" value='用户地址:"+result.user_address+"'>";
+                    trStr+="</label>";
+                    trStr+="</div>";
+
+                    $("#manage").html(trStr);
+                }
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    })
+</script>
+</body>
+</html>

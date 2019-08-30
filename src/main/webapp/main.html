@@ -1,195 +1,446 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="GB18030">
 <head>
-    <meta charset="UTF-8">
-    <title>æ°‘å®¿ä¸»é¡µ</title>
-    <head>
-        <meta charset="GB18030">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <meta charset="GB18030">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Ê×Ò³</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
 
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/main.css">
-        <style>
-            .tree li {
-                list-style-type: none;
-                cursor:pointer;
+    <style type="text/css">
+        #box{
+            width:1519px;
+            height:500px;
+            border:1px solid black;
+            position:relative;
+            overflow:hidden;
+        }
+        #1{
+            background-position:100%;
+            width:1000px;
+            height: 800px;
+        }
+        #2{
+            background-position:100%;
+            width:1000px;
+            height: 800px;
+        }
+        #3{
+            background-position:100%;
+            width:1000px;
+            height: 800px;
+        }
+        .slide{
+            width:1000px;
+            height:800px;
+            position:absolute;
+        }
+        img{
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        #content {
+            width: 1470px;
+            height: 350px;
+            display: -webkit-flex;
+            /*display: flex;
+            display: inline-flex;*/
+            justify-content: space-around;
+        }
+        #content1 {
+            width: 1470px;
+            height: 350px;
+            display: -webkit-flex;
+            /*display: flex;
+            display: inline-flex;*/
+            justify-content: space-around;
+        }
+        .img_room {
+            width: 300px;
+            height: 250px;
+        }
+    </style>
+    <script type="text/javascript">
+        onload=function(){
+            var arr = document.getElementsByClassName("slide");
+            for(var i=0;i<arr.length;i++){
+                arr[i].style.left = i*1000+"px";
             }
-            table tbody tr:nth-child(odd){background:#F4F4F4;}
-            table tbody td:nth-child(even){color:#C00;}
-        </style>
-
-    </head>
+        };
+        function LeftMove(){
+            var arr = document.getElementsByClassName("slide");//»ñÈ¡Èý¸ö×Ódiv
+            for(var i=0;i<arr.length;i++){
+                var left = parseFloat(arr[i].style.left);
+                left-=1;
+                var width = 1000;//Í¼Æ¬µÄ¿í¶È
+                if(left<=-width){
+                    left=(arr.length-1)*width;//µ±Í¼Æ¬ÍêÈ«×ß³öÏÔÊ¾¿ò£¬Æ´½Óµ½Ä©Î²
+                    clearInterval(moveId);
+                }
+                arr[i].style.left = left+"px";
+            }
+        }
+        function divInterval(){
+            moveId=setInterval(LeftMove,10);//ÉèÖÃÒ»¸ö10ºÁÃë¶¨Ê±Æ÷
+        }
+        timeId=setInterval(divInterval,9000);//ÉèÖÃÒ»¸ö10ÃëµÄ¶¨Ê±Æ÷¡£
+        function stop(){
+            clearInterval(timeId);
+        }
+        function start(){
+            clearInterval(timeId);
+            timeId=setInterval(divInterval,9000);
+        }
+        //Ò³ÃæÊ§È¥½¹µãÍ£Ö¹
+        onblur = function(){
+            stop();
+        };
+        //Ò³Ãæ»ñÈ¡½¹µãÊ±¿ªÊ¼
+        onfocus = function(){
+            start();
+        }
+    </script>
 </head>
-
 <body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div><a class="navbar-brand" style="font-size:32px;" href="#">ÃûËÞ</a></div>
+        </div>
+        <div class="navbar-collapse collapse">
+            <a class="navbar-brand" href="main.html">Ê×Ò³</a>
+            <a class="navbar-brand" href="login.html">µÇÂ¼</a>
+            <a class="navbar-brand" href="reg.html">×¢²á</a>
+            <a class="navbar-brand" href="userinfo.html">¸öÈËÐÅÏ¢</a>
+            <a class="navbar-brand" href="house_info.html">³ö×â·¿Ô´</a>
+        </div>
+    </div>
+</nav>
+<div>
+    <div id="box" onmouseover="stop()" onmouseout="start()" align="center">
+        <div id="1" class="slide">
+            <img src="images/lunbo1.jpg" alt="1">
+        </div>
+        <div id="2" class="slide">
+            <img src="images/lunbo2.jpg" alt="2">
+        </div>
+        <div id="3" class="slide">
+            <img src="images/lunbo3.jpg" alt="3">
+        </div>
+    </div>
+    <div style="height: 20px"></div>
+    <div style="height: 50px" >
+        <form class="form-inline" role="form" style="float:left;">
+            <div class="form-group has-feedback">
+                <div class="input-group">
+                    <div class="input-group-addon">³ÇÊÐ</div>
+                    <input class="form-control has-success" type="text" placeholder="ÇëÊäÈë²éÑ¯³ÇÊÐ" id="cityInput">
+                    <div class="input-group-addon">ÃñËÞÀàÐÍ</div>
+                    <select class="form-control has-success" type="text" placeholder="ÇëÊäÈë²éÑ¯ÃûËÞÀàÐÍ" id="h_typeInput">
+                        <option   value=""></option>
+                        <option   value="¹«Ô¢ÐÍ×¡Õ¬">¹«Ô¢ÐÍ×¡Õ¬</option>
+                        <option  value="¶À¶°·¿">¶À¶°·¿</option>
+                        <option   value="Loft">Loft</option>
+                        <option  value="¾Æµê">¾Æµê</option>
+                        <option   value="¾ÆµêÊ½¹«Ô¢">¾ÆµêÊ½¹«Ô¢</option>
+                        <option  value="¾«Æ·¾Æµê">¾«Æ·¾Æµê</option>
+                        <option   value="ÇàÄêÂÃÉá">ÇàÄêÂÃÉá</option>
+                        <option  value="Å©¼ÒÀÖ">Å©¼ÒÀÖ</option>
+                        <option   value="¶È¼Ù´å">¶È¼Ù´å</option>
+                        <option  value="Ïç´åÐ¡ÎÝ">Ïç´åÐ¡ÎÝ</option>
+                        <option   value="¿ÍÕ»">¿ÍÕ»</option>
+                        <option  value="ÃÉ¹Å°ü">ÃÉ¹Å°ü</option>
+                        <option   value="Æ½·¿">Æ½·¿</option>
+                        <option  value="ÁªÅÅ±ðÊû">ÁªÅÅ±ðÊû</option>
+                        <option   value="Ä¾ÎÝ">Ä¾ÎÝ</option>
+                        <option  value="·¿³µ">·¿³µ</option>
+                        <option  value="ÕÊÅñ">ÕÊÅñ</option>
+                        <option   value="Â¶ÓªµØ">Â¶ÓªµØ</option>
+                        <option  value="Ê÷ÎÝ">Ê÷ÎÝ</option>
+                    </select>
+                </div>
+            </div>
+            <button type="button" class="btn btn-warning" onclick="initPage()"><i class="glyphicon glyphicon-search"></i> ²éÑ¯</button>
+        </form>
+    </div>
+</div>
+    <div align="center">
+        <div id="content">
+        <div class="home_conten">
+            <ul class="rooms_show_ul">
+                <a href="order.html" >
+                    <li style="float: left;list-style: none;" >
+                        <img class="img_room" src="images/lunbo2.jpg">
+                        <div class="rooms_intro">
+                            <span class="room_name">123</span><br>
+                            <span class="index_price"><em class="bigFont">0„6</em>222</span>
+                        </div>
+                    </li>
+                </a>
+            </ul>
+        </div>
+        <div class="home_conten">
+            <ul>
+                <li style="float: left;list-style: none;">
+                    <div>
+                        <img class="img_room" src="images/lunbo2.jpg" height="326" width="400" >
+                        <span class="img_upCover"></span>
+                        <div class="rooms_intro">
+                            <span class="room_name">123</span>
+                            <span class="index_price">
+                                <em class="bigFont">0„6</em>
+                                222
+                            </span>
+                        </div>
+                        <a href="order.html" target="_blank" class="room_hover"></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="home_conten">
+            <ul>
+                <li style="float: left;list-style: none;">
+                    <div>
+                        <img class="img_room" src="images/lunbo2.jpg" height="326" width="400" >
+                        <span class="img_upCover"></span>
+                        <div class="rooms_intro">
+                            <span class="room_name">123</span>
+                            <span class="index_price">
+                                <em class="bigFont">0„6</em>
+                                222
+                            </span>
+                        </div>
+                        <a href="order.html" target="_blank" class="room_hover"></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="home_conten">
+            <ul class="rooms_show_ul">
+                <a href="order.html" >
+                    <li style="float: left;list-style: none;" >
+                        <img class="img_room" src="images/lunbo2.jpg" height="326" width="400" >
+                        <span class="img_upCover"></span>
+                        <div class="rooms_intro">
+                            <span class="room_name">123</span>
+                            <span class="index_price">
+                                <em class="bigFont">0„6</em>
+                                222
+                            </span>
+                        </div>
+                    </li>
+                </a>
+            </ul>
+        </div>
+        </div>
+        <div id="content1">
+            <div class="home_conten">
+                <ul class="rooms_show_ul">
+                    <a href="order.html" >
+                        <li style="float: left;list-style: none;" >
+                            <img class="img_room" src="images/lunbo2.jpg" height="326" width="400" >
+                            <span class="img_upCover"></span>
+                            <div class="rooms_intro">
+                                <span class="room_name">123</span>
+                                <span class="index_price">
+                                <em class="bigFont">0„6</em>
+                                222
+                            </span>
+                            </div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+            <div class="home_conten">
+                <ul>
+                    <li style="float: left;list-style: none;">
+                        <div>
+                            <img class="img_room" src="images/lunbo2.jpg" height="326" width="400" >
+                            <span class="img_upCover"></span>
+                            <div class="rooms_intro">
+                                <span class="room_name">123</span>
+                                <span class="index_price">
+                                <em class="bigFont">0„6</em>
+                                222
+                            </span>
+                            </div>
+                            <a href="order.html" target="_blank" class="room_hover"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="home_conten">
+                <ul>
+                    <li style="float: left;list-style: none;">
+                        <div>
+                            <img class="img_room" src="images/lunbo2.jpg" height="326" width="400" >
+                            <span class="img_upCover"></span>
+                            <div class="rooms_intro">
+                                <span class="room_name">123</span>
+                                <span class="index_price">
+                                <em class="bigFont">0„6</em>
+                                222
+                            </span>
+                            </div>
+                            <a href="order.html" target="_blank" class="room_hover"></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="home_conten">
+                <ul class="rooms_show_ul">
+                    <a href="order.html" >
+                        <li style="float: left;list-style: none;" >
+                            <img class="img_room" src="images/lunbo2.jpg" height="326" width="400" >
+                            <span class="img_upCover"></span>
+                            <div class="rooms_intro">
+                                <span class="room_name">123</span>
+                                <span class="index_price">
+                                <em class="bigFont">0„6</em>
+                                222
+                            </span>
+                            </div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+<div class="table-responsive">
+    <table class="table  table-bordered">
+        <tfoot>
+        <tr>
+            <td align="center">
+            <ul class="pagination">
+            </ul>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
 <script src="jquery/jquery-2.1.1.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="script/docs.min.js"></script>
-<!-- å¤´éƒ¨ start -->
-
-<div class="login_out">
-    <a href="main.html">é¦–é¡µ</a>
-    <a href="login.html">ç™»å½•</a>
-    <a href="register.html">æ³¨å†Œ</a>
-    <a href="myfavorite.html" class="collection">æˆ‘çš„æ”¶è—</a>
-    <a href="javascript:location.href='exitServlet';">é€€å‡º</a>
-    <a href="login.html">å‡ºç§Ÿæˆ¿æº</a>
-    <a href="login.html">æœåŠ¡</a>
-</div>
-
-
-<header id="header">
-
-    <div class="top_banner">
-        <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3742233776,2068776894&fm=26&gp=0.jpg">
-        <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1018153081,1889499588&fm=26&gp=0.jpg">
-    </div>
-
-    <div class="shortcut">
-
-        <div class="login">
-
-            <span id="span_username"></span>
-
-        </div>
-    </div>
-    <div class="header_wrap">
-        <div class="topbar">
-
-            <div>
-            <div class="table-responsive">
-
-                <div>
-                    <form class="form-inline" role="form" style="float:left;">
-                        <div class="form-group has-feedback">
-                            <div class="input-group">
-                                <div class="input-group-addon">åŸŽå¸‚</div>
-                                <input class="form-control has-success" type="text" placeholder="è¯·è¾“å…¥æŸ¥è¯¢åŸŽå¸‚" id="cityInput">
-                                <div class="input-group-addon">æ°‘å®¿ç±»åž‹</div>
-                                <select class="form-control has-success" type="text" placeholder="è¯·è¾“å…¥æŸ¥è¯¢åå®¿ç±»åž‹" id="h_typeInput">
-                                    <option   value=""></option>
-                                    <option   value="å…¬å¯“åž‹ä½å®…">å…¬å¯“åž‹ä½å®…</option>
-                                    <option  value="ç‹¬æ ‹æˆ¿">ç‹¬æ ‹æˆ¿</option>
-                                    <option   value="Loft">Loft</option>
-                                    <option  value="é…’åº—">é…’åº—</option>
-                                    <option   value="é…’åº—å¼å…¬å¯“">é…’åº—å¼å…¬å¯“</option>
-                                    <option  value="ç²¾å“é…’åº—">ç²¾å“é…’åº—</option>
-                                    <option   value="é’å¹´æ—…èˆ">é’å¹´æ—…èˆ</option>
-                                    <option  value="å†œå®¶ä¹">å†œå®¶ä¹</option>
-                                    <option   value="åº¦å‡æ‘">åº¦å‡æ‘</option>
-                                    <option  value="ä¹¡æ‘å°å±‹">ä¹¡æ‘å°å±‹</option>
-                                    <option   value="å®¢æ ˆ">å®¢æ ˆ</option>
-                                    <option  value="è’™å¤åŒ…">è’™å¤åŒ…</option>
-                                    <option   value="å¹³æˆ¿">å¹³æˆ¿</option>
-                                    <option  value="è”æŽ’åˆ«å¢…">è”æŽ’åˆ«å¢…</option>
-                                    <option   value="æœ¨å±‹">æœ¨å±‹</option>
-                                    <option  value="æˆ¿è½¦">æˆ¿è½¦</option>
-                                    <option  value="å¸ç¯·">å¸ç¯·</option>
-                                    <option   value="éœ²è¥åœ°">éœ²è¥åœ°</option>
-                                    <option  value="æ ‘å±‹">æ ‘å±‹</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-warning" onclick="initPage()"><i class="glyphicon glyphicon-search"></i> æŸ¥è¯¢</button>
-                    </form>
-                </div>
-
-                <table class="table  table-bordered" >
-
-                    <tbody id="dataTable">
-
-
-                    </tbody>
-                    <tfoot>
-                    <tr >
-                        <td colspan="6" align="center">
-                            <ul class="pagination">
-                                <li class="disabled"><a href="#">ä¸Šä¸€é¡µ</a></li>
-                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">ä¸‹ä¸€é¡µ</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-
-                    </tfoot>
-                </table>
-            </div>
-            </div>
-
-        </div>
-    </div>
-</header>
-
 
 <script>
     function initPage(){
-        // var pageNum = window.location.search.split("=")[1];
+        var pageNum = window.location.search.split("=")[1];
+        var requestURL = "listAllAdministrator";
+        if(pageNum==null){
+            pageNum = 1;
+        }else {
+            requestURL+="?pageNum="+pageNum;
+        }
         $.ajax({
-            //è¯·æ±‚æ–¹å¼
+            //ÇëÇó·½Ê½
             type : "POST",
-            //è¯·æ±‚çš„åª’ä½“ç±»åž‹
+            //ÇëÇóµÄÃ½ÌåÀàÐÍ
             contentType: "application/json;charset=UTF-8",
-            //æŽ¥å—æ•°æ®ç±»åž‹
+            //½ÓÊÜÊý¾ÝÀàÐÍ
             dataType:"json",
-            //è¯·æ±‚åœ°å€
-            //url : "http://localhost:8080//getHousePicture",
+            //ÇëÇóµØÖ·
             url : "http://localhost:8080//getHouseInfo",
-            //æ•°æ®ï¼Œjsonå­—ç¬¦ä¸²
+            //Êý¾Ý£¬json×Ö·û´®
             data : JSON.stringify(
                 {
-                    "city": $("#cityInput").val().replace(/\s*/g,""),
+                    "city": $("#cityInput").val().replace(/\s*!/g,""),
                     "h_type": $("#h_typeInput").val().replace(/\s*/g,""),
-                      // "pageNum":pageNum
+                    "pageNum":pageNum
                 }
             ),
-          //è¯·æ±‚æˆåŠŸ
+            //ÇëÇó³É¹¦
             success : function(result) {
                 console.log(result);
-            if (result!=null&&result!="")
-                {
-                    $("#dataTable").html("");
-                     // console.log(result);
-                    //2.å°†æ•°æ®å¡«å……åˆ°tableä¸­
-                    var trStr = "<tr>";
-                    var a;
-                    $(result).each(function (index, item) {
-                        if (index==0){
-                            trStr += "<td><img src=\"" + item.picture + "\" onclick='toOrder(" + item.houseid + ")'></td>";
-                            trStr += "<td>" + item.h_price + "å…ƒ" + "</td>";
-                            trStr += "<td>" + item.h_type + "</td>";
-                            trStr += "<td>" + item.city + "</td>";
-                            trStr += "<td>" + item.sketch + "</td>";
-                            trStr += "</tr>";
-                            //$("#dataTable").append(trStr);
-                            a=item.houseid;
-                        } else if(item.houseid!=a) {
-                            trStr += "<td><img src=\"" + item.picture + "\" onclick='toOrder(" + item.houseid + ")'></td>";
-                            trStr += "<td>" + item.h_price + "å…ƒ" + "</td>";
-                            trStr += "<td>" + item.h_type + "</td>";
-                            trStr += "<td>" + item.city + "</td>";
-                            trStr += "<td>" + item.sketch + "</td>";
-                            trStr += "</tr>";
-                            //$("#dataTable").append(trStr);
-                            a = item.houseid;
-                        }
-                        $("#dataTable").html(trStr);
-                    });
-
-
-
-                }else {  alert("å¯¹ä¸èµ·ï¼ŒæŸ¥è¯¢å¤±è´¥");}
+                if (result.size==0) {
+                    alert("ÄúËÑË÷µÄ·¿ÎÝÔÝÊ±Ã»ÓÐ·¿Ô´");
+                    $("#cityInput").val("");
+                    $("#h_typeInput").val("");
+                    initPage();
+                }
+                $("#content").html("");
+                $("#content1").html("");
+                $(result.list).each(function(index,item){
+                    if (index<4) {
+                        //alert(index);
+                        var strs = "<div class=\"home_conten\">";
+                        strs += "<a href='order.html?houseid="+item.houseid+"' >";
+                        strs += "<li style=\"float: left;list-style: none;\" >";
+                        $(item.housePictures).each(function (i,a) {
+                            if (i == 0) {
+                                strs += "<img class=\"img_room\" src="+a.picture+">"
+                            }
+                        });
+                        strs += "<div class=\"rooms_intro\">";
+                        strs += "<span class='room_type'>"+item.h_type+"</span><br>";
+                        strs += "<span class='room_type'>"+item.city+"</span><br>";
+                        strs += "<span class='room_sketch'>"+item.sketch+"</span><br>";
+                        strs += "<span class='index_price'><em class='bigFont'>0„6</em>"+item.h_price+"</span>";
+                        strs += "</div>";
+                        strs += "</li>";
+                        strs += "</a>";
+                        $("#content").append(strs);
+                    }else if (index>3) {
+                        //alert(index);
+                        var strs = "<div class=\"home_conten\">";
+                        strs += "<a href='order.html?houseid="+item.houseid+"' >";
+                        strs += "<li style=\"float: left;list-style: none;\" >";
+                        $(item.housePictures).each(function (j,b) {
+                            if (j == 0) {
+                                strs += "<img class=\"img_room\" src="+b.picture+">"
+                            }
+                        });
+                        strs += "<div class=\"rooms_intro\">";
+                        strs += "<span class='room_type'>"+item.h_type+"</span><br>";
+                        strs += "<span class='room_type'>"+item.city+"</span><br>";
+                        strs += "<span class='room_sketch'>"+item.sketch+"</span><br>";
+                        strs += "<span class='index_price'><em class='bigFont'>0„6</em>"+item.h_price+"</span>";
+                        strs += "</div>";
+                        strs += "</li>";
+                        strs += "</a>";
+                        $("#content1").append(strs);
+                    }
+                });
+                if (pageNum == 1 && result.pages == 1) {
+                    var splitePageStr = "<li class=\"disabled\"><a href=\"#\">ÉÏÒ»Ò³</a></li>";
+                    for (var i = 1; i <= result.pages; i++) {
+                        splitePageStr += "<li><a href=\"main.html?pageNum=" + i + "\">" + i + "</a></li>";
+                    }
+                    splitePageStr += "<li class=\"disabled\"><a href=\"#\">ÏÂÒ»Ò³</a></li>";
+                    $(".pagination").html("");
+                    $(".pagination").append(splitePageStr);
+                }  else if (pageNum==1) {
+                    var splitePageStr = "<li class=\"disabled\"><a href=\"#\">ÉÏÒ»Ò³</a></li>";
+                    for (var i = 1; i <= result.pages; i++) {
+                        splitePageStr += "<li><a href=\"main.html?pageNum=" + i + "\">" + i + "</a></li>";
+                    }
+                    splitePageStr += "<li><a href=\"main.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">ÏÂÒ»Ò³</a></li>";
+                    $(".pagination").html("");
+                    $(".pagination").append(splitePageStr);
+                } else if (pageNum == result.pages) {
+                    var splitePageStr = "<li><a href=\"main.html?pageNum=" + (parseInt(pageNum)-1) + "\">ÉÏÒ»Ò³</a></li>";
+                    for (var i = 1; i <= result.pages; i++) {
+                        splitePageStr += "<li><a href=\"main.html?pageNum=" + i + "\">" + i + "</a></li>";
+                    }
+                    splitePageStr += "<li class=\"disabled\"><a href=\"#\">ÏÂÒ»Ò³</a></li>";
+                    $(".pagination").html("");
+                    $(".pagination").append(splitePageStr);
+                } else {
+                    var splitePageStr = "<li><a href=\"main.html?pageNum=" + (parseInt(pageNum)-1) + "\">ÉÏÒ»Ò³</a></li>";
+                    for (var i = 1; i <= result.pages; i++) {
+                        splitePageStr += "<li><a href=\"main.html?pageNum=" + (parseInt(pageNum )+ 1) + "\">" + i + "</a></li>";
+                    }
+                    splitePageStr += "<li><a href=\"#\">ÏÂÒ»Ò³</a></li>";
+                    $(".pagination").html("");
+                    $(".pagination").append(splitePageStr);
+                }
             },
-            //è¯·æ±‚å¤±è´¥ï¼ŒåŒ…å«å…·ä½“çš„é”™è¯¯ä¿¡æ¯
+            //ÇëÇóÊ§°Ü£¬°üº¬¾ßÌåµÄ´íÎóÐÅÏ¢
             error : function(e){
-
                 console.log(e.status);
                 console.log(e.responseText);
             }
@@ -198,7 +449,7 @@
     initPage();
 
     function toOrder(houseid) {
-        alert(houseid)
+        alert(houseid);
         window.location.href="order.html?houseid="+houseid;
     }
 

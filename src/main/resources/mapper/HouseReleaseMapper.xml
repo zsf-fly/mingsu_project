@@ -5,8 +5,8 @@
 <mapper namespace="com.qf.dao.HouseReleaseMapper">
     <!--添加房屋信息-->
     <insert id="addHouseInfo" useGeneratedKeys="true" keyProperty="houseid" keyColumn="houseid" parameterType="com.qf.pojo.Houses" >
-        insert into houses(houseid,h_name,h_type,rent_type,h_price)
-        values(DEFAULT,#{h_name},#{h_type},#{rent_type},#{h_price})
+        insert into houses(houseid,userid,h_name,h_type,rent_type,h_price)
+        values(DEFAULT,#{userid},#{h_name},#{h_type},#{rent_type},#{h_price})
     </insert>
 
     <!--添加房屋配置-->

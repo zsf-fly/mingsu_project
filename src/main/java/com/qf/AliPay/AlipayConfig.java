@@ -1,6 +1,9 @@
 package com.qf.AliPay;
 
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class AlipayConfig {
     // 应用ID,您的APPID，收款账号既是您的APPID对应支付宝账号
     public static String app_id = "2016101400684590";
@@ -12,10 +15,10 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAri8uFHnMERekHM+mDz2p/37LN28t7J5UIO30JjvbCo1ns9SuUdGC0yyJ1SYpMubOKRxcIKePtLNgwsC0jY/Ialpg6mNkrjnNvy36erY2UpqHDj1bV5/3GnoHSrn8s8EqN50gUOf73hRF1YEkRn0vr+aURzbGjfuAo6DfsCo11c2W+OewQff8e5SmIK+m3e9veclm638htIKoQ9uTBH/1J83xgpuPAfuTrwph+YkkrWtrDRGtBogd+28Lw6tJx0JRmTFydD/5GyfAvQfu2JtN99kSRvYEnsJOF80XN4IeLp08haHUIm9FRCm7h04mFG2ESqXQF1TJf2SoJ535X9LGpQIDAQAB";
 
     // 服务器异步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String notify_url = "http://localhost:8080/login.html";
+    public static String notify_url = "http://localhost:8080/notify_url.jsp";
 
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String return_url = "http://localhost:8080/main.html";
+    public static String return_url = "http://localhost:8080/return_url";
 
     // 签名方式
     public static String sign_type = "RSA2";
@@ -28,4 +31,30 @@ public class AlipayConfig {
 
     // 仅支持JSON
     public static String format = "JSON";
+
+    // 支付宝网关 日志
+    public static String log_path = "C:\\";
+//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+    /**
+
+     * 写日志，方便测试（看网站需求，也可以改成把记录存入数据库）
+     * @param sWord 要写入日志里的文本内容
+     */
+    public static void logResult(String sWord) {
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(log_path + "alipay_log_" + System.currentTimeMillis()+".txt");
+            writer.write(sWord);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

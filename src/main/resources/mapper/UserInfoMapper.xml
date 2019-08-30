@@ -44,4 +44,20 @@
         select ua.username,ui.*,h.h_name,h.h_type,h.rent_type from user_account ua,userinfo ui,houses h
         where ua.userid=ui.userid and ua.userid=h.userid and ua.userid=#{userid}
     </select>
+
+    <!--查询用户个人信息-->
+    <select id="selectUserInfoById" resultType="com.qf.pojo.UserInfo" parameterType="int">
+        select * from userinfo where userid=#{userid}
+    </select>
+
+    <!--插入个人信息-->
+    <insert id="addUserInfo" parameterType="com.qf.pojo.UserInfo">
+        insert into userinfo values (default ,#{userid},#{user_name},#{user_sex},#{user_email},#{user_phone},#{user_address},#{user_avatar})
+    </insert>
+
+    <!--修改个人信息页-->
+    <update id="updateUserInfo" parameterType="com.qf.pojo.UserInfo">
+        update userinfo user_name=#{user_name},user_sex=#{user_sex},user_email=#{user_email},user_phone=#{user_phone},user_address=#{user_address},user_avatar=#{user_avatar}
+        where userid=#{userid}
+    </update>
 </mapper>

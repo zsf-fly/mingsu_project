@@ -2,6 +2,7 @@ package com.qf.service;
 
 import com.qf.dto.LoginInfo;
 import com.qf.pojo.UserAccount;
+import com.qf.pojo.UserInfo;
 import com.qf.vo.UserInfoVO;
 
 public interface UserInfoService {
@@ -39,4 +40,25 @@ public interface UserInfoService {
      * @return
      */
     public UserInfoVO selectUserInfo(int userid);
+
+    /**
+     * 前台查询用户个人信息
+     * @param userid
+     * @return
+     */
+    public UserInfo selectUserInfoById(int userid);
+
+    /**
+     * 添加个人信息
+     * @param userInfo
+     * @return
+     */
+    public int addUserInfo(UserInfo userInfo);
+
+    /**
+     * 修改个人信息
+     * @param userInfo
+     * @return
+     */
+    public int updateUserInfo(UserInfo userInfo);
 }

@@ -12,17 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderInfoController {
     @Autowired
     OrderInfoService  orderInfoService;
-    @RequestMapping("getOrderInfo")
 
     //展示详情页房源信息（预定页）
+    @RequestMapping("getOrderInfo")
     public Object getOrderInfo(@RequestParam int houseid){
+        System.out.println(houseid);
         return orderInfoService.getOrderInfo(houseid);
     }
 
-    //生成订单信息(添加订单信息)
+    /*//生成订单信息(添加订单信息)
     @RequestMapping("addOrderInfo")
     public Object addOrderInfo(@RequestBody ToOrderInfo toOrderInfo){
         return orderInfoService.addOrderInfo(toOrderInfo);
-    }
+    }*/
 
 }

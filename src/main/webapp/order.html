@@ -3,51 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>预定</title>
-    <head>
-        <meta charset="GB18030">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/main.css">
-        <style>
-            .tree li {
-                list-style-type: none;
-                cursor:pointer;
-            }
-            table tbody tr:nth-child(odd){background:#F4F4F4;}
-            table tbody td:nth-child(even){color:#C00;}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
 
-
-        </style>
-        <meta charset="utf-8">
-        <title>HTML CSS Exercise CSS3 button</title>
-        <style type="text/css">
-            button {
-                width: 200px;
-                padding:8px;
-                background-color: #428bca;
-                border-color: #357ebd;
-                color: #fff;
-                -moz-border-radius: 10px;
-                -webkit-border-radius: 10px;
-                border-radius: 10px; /* future proofing */
-                -khtml-border-radius: 10px; /* for old Konqueror browsers */
-                text-align: center;
-                vertical-align: middle;
-                border: 1px solid transparent;
-                font-weight: 900;
-                font-size:125%
-            }
-            #dataTable2{margin: auto;}
-            body{text-align: center;}
-
-
-        </style>
-
-    </head>
 </head>
 
 <body>
@@ -55,75 +18,50 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="script/docs.min.js"></script>
 
-
-<div class="login_out">
-    <a href="main.html">首页</a>
-    <a href="login.html">登录</a>
-    <a href="register.html">注册</a>
-    <a href="myfavorite.html" class="collection">我的收藏</a>
-    <a href="javascript:location.href='exitServlet';">退出</a>
-    <a href="login.html">出租房源</a>
-    <a href="login.html">服务</a>
-</div>
-<header id="header">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div><a class="navbar-brand" style="font-size:32px;" href="#">名宿</a></div>
+        </div>
+        <div class="navbar-collapse collapse">
+            <a class="navbar-brand" href="main.html">首页</a>
+            <a class="navbar-brand" href="login.html">登录</a>
+            <a class="navbar-brand" href="reg.html">注册</a>
+            <a class="navbar-brand" href="house_info.html">出租房源</a>
+        </div>
+    </div>
+</nav>
+<div id="header">
     <div class="header_wrap">
         <div class="topbar">
-
             <div class="table-responsive">
-
-                <table class="table  table-bordered" id="dataTable">
-                </table>
-
-
-
-                <table class="table  table-bordered" id="dataTable3">
-                </table>
-
-                <table class="table  table-bordered" id="dataTable7">
-                </table>
-
-                <table class="table  table-bordered" id="dataTable4">
-                </table>
-
-
-
-                <table class="table  table-bordered" id="dataTable5">
-                </table>
-
-
-
+                <table class="table  table-bordered" id="dataTable"></table>
+                <table class="table  table-bordered" id="dataTable3"></table>
+                <table class="table  table-bordered" id="dataTable7"></table>
+                <table class="table  table-bordered" id="dataTable4"></table>
+                <table class="table  table-bordered" id="dataTable5"></table>
                 安全设施：
-                <table class="table  table-bordered" id="dataTable6">
-                </table>
-
-
-                <table class="table  table-bordered" id="dataTable2" >
-
-                    入住日期:<br>
-                    <input type="date" name="firstname" value="Mickey" id="checkin_data" >
-
-                    <br>
-                    退房日期:<br>
-                    <input type="date" name="lastname" value="Mouse"  id="checkout_data">
-
-                    <br>
+                <table class="table  table-bordered" id="dataTable6"></table>
+                <div align="center">
+                    入住日期:
+                    <input type="date" name="firstname" value="checkin_date" id="checkin_data" >
+                    退房日期:
+                    <input type="date" name="lastname" value="checkout_data" id="checkout_data">
                     <!--房客数量<br>-->
                     <!--<input type="number" />-->
                     <!--<br><br>-->
                     <input type="submit" value="预定" onclick="addOrderInfo()">
-                </table>
-                <div id="test"></div>
+                </div>
             </div>
-
+            <div id="pays" style="height: 100px"></div>
         </div>
     </div>
-</header>
+</div>
 
 <script>
+    var id=window.location.search.split("=")[1];
     var price;
     function initPage(){
-        var params=window.location.search;
-        var id=params.split("=")[1];
         $.ajax({
             //请求方式
             type : "GET",
@@ -132,120 +70,94 @@
             //接受数据类型
             dataType:"json",
             //请求地址
-
             url : "http://localhost:8080//getOrderInfo?houseid="+id,
-            //数据，json字符串
-            // data : JSON.stringify(
-            //     {
-            //         "username": $("#usernameInput").val(),
-            //         "email": $("#emailInput").val()
-            //     }
-            // ),
             //请求成功
             success : function(result) {
-                // $("#dataTable tbody").html("");
-                //  console.log(result);
+                console.log(result);
                 //2.将数据填充到table中
-                $(result).each(function(index,item){
-
-                        // var arr[];
-                        // arr[]=item.picture
-                        price = item.h_price;
-                        console.log(item);
-                        var trStr = "<tr>";
-                        trStr += "<td><img src=\"" + item.picture + "\"></td>";
-
-                        trStr += "</tr>";
-                        $("#dataTable").append(trStr);
-                // });
-                    //if(index%3==0){
-            if (index==0){
-                        var trStr2 = "<tr>";
-                        trStr2 += "<td>" + item.h_price + "元" + "</td>";
-                        trStr2 += "<td>" + item.sketch + "</td>";
-                        trStr2 += "</tr>";
-                        $("#dataTable3").append(trStr2);
-
-                        var trStr6 = "<tr>";
-                        if (item.hairdryer == 1) {
-                            trStr6 += "<td>" + "吹风机" + "</td>";
-                        }
-                        if (item.desk == 1) {
-                            trStr6 += "<td>" + "写字桌" + "</td>";
-                        }
-                        if (item.washer == 1) {
-                            trStr6 += "<td>" + "独卫" + "</td>";
-                        }
-                        if (item.wifi == 1) {
-                            trStr6 += "<td>" + "无线网" + "</td>";
-                        }
-                        if (item.television == 1) {
-                            trStr6 += "<td>" + "电视" + "</td>";
-                        }
-                        if (item.toiletries == 1) {
-                            trStr6 += "<td>" + "洗漱用品" + "</td>";
-                        }
-                        if (item.air == 1) {
-                            trStr6 += "<td>" + "空调" + "</td>";
-                        }
-                        if (item.refrigerator == 1) {
-                            trStr6 += "<td>" + "冰箱" + "</td>";
-                        }
-                        if (item.hanger == 1) {
-                            trStr6 += "<td>" + "衣架" + "</td>";
-                        }
-                        if (item.iron == 1) {
-                            trStr6 += "<td>" + "熨斗" + "</td>";
-                        }
-                        if (item.elevator == 1) {
-                            trStr6 += "<td>" + "电梯" + "</td>";
-                        }
-                        trStr6 += "</tr>";
-                        $("#dataTable7").append(trStr6);
-
-
-                        var trStr3 = "<tr>";
-                        trStr3 += "<td>" + item.h_name + "</td>";
-                        trStr3 += "<td>" + item.spots + "</td>";
-                        trStr3 += "<td>" + item.traffic + "</td>";
-                        trStr3 += "<td>" + item.provinces + "</td>";
-                        trStr3 += "<td>" + item.city + "</td>";
-                        trStr3 += "<td>" + item.county + "</td>";
-                        trStr3 += "<td>" + item.address + "</td>";
-                        trStr3 += "<td>" + item.h_type + "</td>";
-                        trStr3 += "</tr>";
-                        $("#dataTable4").append(trStr3);
-
-                        var trStr4 = "<tr>";
-                        trStr4 += "<td>" + item.rent_type + "</td>";
-                        trStr4 += "<td>" + "可住人数" + item.people + "</td>";
-                        trStr4 += "<td>" + "卧室数量" + item.bedroom + "</td>";
-                        trStr4 += "<td>" + "床数" + item.bed + "</td>";
-                        trStr4 += "<td>" + item.bed_type + "</td>";
-                        trStr4 += "<td>" + "洗手间" + item.toliet + "</td>";
-                        trStr4 += "</tr>";
-                        $("#dataTable5").append(trStr4);
-
-                        var trStr5 = "<tr>";
-                        if (item.smokealarm == 1) {
-                            trStr5 += "<td>" + "烟雾报警器" + "</td>";
-                        }
-                        if (item.co_alam == 1) {
-                            trStr5 += "<td>" + "一氧化碳报警器" + "</td>";
-                        }
-                        if (item.first_aid_kit == 1) {
-                            trStr5 += "<td>" + "急救包" + "</td>";
-                        }
-                        if (item.extinguisher == 1) {
-                            trStr5 += "<td>" + "灭火器" + "</td>";
-                        }
-                        trStr5 += "</tr>";
-                        $("#dataTable6").append(trStr5);
-
-
-          }
-               });
-
+                var item = result[0];
+                price = item.h_price;
+                console.log(item);
+                var trStr = "<tr>";
+                trStr += "<td align='center'><img src=\"" + item.picture + "\" height='300' width='600'></td>";
+                trStr += "</tr>";
+                $("#dataTable").html(trStr);
+                var trStr2 = "<tr>";
+                trStr2 += "<td>" + "单价: "+item.h_price + "元" + "</td>";
+                trStr2 += "<td>" + "简述: "+item.sketch + "</td>";
+                trStr2 += "</tr>";
+                $("#dataTable3").html(trStr2);
+                var trStr6 = "<tr>";
+                if (item.hairdryer == 1) {
+                    trStr6 += "<td>" + "吹风机" + "</td>";
+                }
+                if (item.desk == 1) {
+                    trStr6 += "<td>" + "写字桌" + "</td>";
+                }
+                if (item.washer == 1) {
+                    trStr6 += "<td>" + "独卫" + "</td>";
+                }
+                if (item.wifi == 1) {
+                    trStr6 += "<td>" + "无线网" + "</td>";
+                }
+                if (item.television == 1) {
+                    trStr6 += "<td>" + "电视" + "</td>";
+                }
+                if (item.toiletries == 1) {
+                    trStr6 += "<td>" + "洗漱用品" + "</td>";
+                }
+                if (item.air == 1) {
+                    trStr6 += "<td>" + "空调" + "</td>";
+                }
+                if (item.refrigerator == 1) {
+                    trStr6 += "<td>" + "冰箱" + "</td>";
+                }
+                if (item.hanger == 1) {
+                    trStr6 += "<td>" + "衣架" + "</td>";
+                }
+                if (item.iron == 1) {
+                    trStr6 += "<td>" + "熨斗" + "</td>";
+                }
+                if (item.elevator == 1) {
+                    trStr6 += "<td>" + "电梯" + "</td>";
+                }
+                trStr6 += "</tr>";
+                $("#dataTable7").html(trStr6);
+                var trStr3 = "<tr>";
+                trStr3 += "<td>" + item.h_name + "</td>";
+                trStr3 += "<td>" + item.spots + "</td>";
+                trStr3 += "<td>" + item.traffic + "</td>";
+                trStr3 += "<td>" + item.provinces + "</td>";
+                trStr3 += "<td>" + item.city + "</td>";
+                trStr3 += "<td>" + item.county + "</td>";
+                trStr3 += "<td>" + item.address + "</td>";
+                trStr3 += "<td>" + item.h_type + "</td>";
+                trStr3 += "</tr>";
+                $("#dataTable4").html(trStr3);
+                var trStr4 = "<tr>";
+                trStr4 += "<td>" + item.rent_type + "</td>";
+                trStr4 += "<td>" + "可住人数" + item.people + "</td>";
+                trStr4 += "<td>" + "卧室数量" + item.bedroom + "</td>";
+                trStr4 += "<td>" + "床数" + item.bed + "</td>";
+                trStr4 += "<td>" + item.bed_type + "</td>";
+                trStr4 += "<td>" + "洗手间" + item.toliet + "</td>";
+                trStr4 += "</tr>";
+                $("#dataTable5").html(trStr4);
+                var trStr5 = "<tr>";
+                if (item.smokealarm == 1) {
+                    trStr5 += "<td>" + "烟雾报警器" + "</td>";
+                }
+                if (item.co_alam == 1) {
+                    trStr5 += "<td>" + "一氧化碳报警器" + "</td>";
+                }
+                if (item.first_aid_kit == 1) {
+                    trStr5 += "<td>" + "急救包" + "</td>";
+                }
+                if (item.extinguisher == 1) {
+                    trStr5 += "<td>" + "灭火器" + "</td>";
+                }
+                trStr5 += "</tr>";
+                $("#dataTable6").html(trStr5);
             },
             //请求失败，包含具体的错误信息
             error : function(e){
@@ -255,27 +167,24 @@
         });
     }
     initPage();
+
     function addOrderInfo() {
-
-        var params=window.location.search;
-        var id=params.split("=")[1];
-
+        var orderNumber = new Date().getTime();
+        orderNumber+=id;
         var secondsTime=new Date($("#checkin_data").val()).getTime();
         var secondsTime2=new Date($("#checkout_data").val()).getTime();
-
-             var days = (secondsTime2 - secondsTime)/1000;
-             var a=24*3600;
-             var days2=days/a;
-             var total_price = days2*price;
-
+        var days = (secondsTime2 - secondsTime)/1000;
+        var a=24*3600;
+        var days2=days/a;
+        var total_price = days2*price;
         var date = new Date(); //创建时间对象
-         var year = date.getFullYear(); //获取年
+        var year = date.getFullYear(); //获取年
         var month = date.getMonth()+1;//获取月
         var day = date.getDate(); //获取当日
         var hour=date.getHours();
         var minute=date.getMinutes();
         var second=date.getSeconds();
-         var time = year+"-"+month+"-"+day; //组合时间
+        var time = year+"-"+month+"-"+day; //组合时间
 
         $.ajax({
             //请求方式
@@ -283,32 +192,23 @@
             //请求的媒体类型
             contentType: "application/json;charset=UTF-8",
             //接受数据类型
-            dataType: "json",
+            // dataType: "json",
             //请求地址
-            url: "http://localhost:8080//addOrderInfo",
+            url: "http://localhost:8080//generateOrder",
             //数据，json字符串
             data: JSON.stringify(
-                {   "orderid": $("#orderid").val(),
-                    "userid":$("#userid").val(),
+                {
                     "houseid":id,
                      "checkin_data":secondsTime,
                      "checkout_data":secondsTime2,
                     "total_price":total_price,
-                    "createtime":time
+                    "createtime":time,
+                    "order_number":orderNumber
                 }
             ),
             //请求成功
             success: function (result) {
-                console.log(result);
-                if (result) {
-                     console.log(result);
-
-                    alert("预定已提交");
-                    window.location.href = "main.html";
-                   // window.location.href = "login.html";
-                } else {
-                    alert("信息错误");
-                }
+                $("#pays").html(result);
             },
             //请求失败，包含具体的错误信息
             error: function (e) {

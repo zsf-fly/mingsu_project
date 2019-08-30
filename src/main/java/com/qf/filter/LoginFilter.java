@@ -1,8 +1,6 @@
 package com.qf.filter;
 
-import com.qf.dto.LoginInfo;
 import com.qf.pojo.Administrator;
-import com.qf.pojo.UserAccount;
 import com.qf.pojo.UserAccount;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

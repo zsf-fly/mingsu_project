@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改个人信息</title>
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="dropzone/basic.min.css" />
+    <link rel="stylesheet" href="dropzone/dropzone.min.css" />
+    <style>
+        .nav_info{
+            height:80px;
+        }
+        .house_info{
+            width: 400px;
+
+        }
+        .nav_logo img{
+            height: 60px;
+            width: 80px;
+            display: block;
+            fill: currentColor;
+            margin: 8px 30px;
+        }
+        .nav_text{
+            float: right;
+            font-size: 18px;
+        }
+        .nav_line {
+            background-color: #008489;
+            height: 2px;
+        }
+        a{
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .d4{
+            margin: 0px 30px 10px 30px;
+        }
+        .d4_1{
+            margin-top: 30px;
+            word-wrap: break-word;
+            font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.25em;
+            color: #484848;
+            padding-top: 2px;
+            padding-bottom: 10px;
+        }
+        .d4_4{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+            font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.375em;
+            color: #484848;
+            width: 520px;
+        }
+        .dropzone {
+            min-height: 150px;
+            width: 520px;
+            border: 1px solid #DCE0E0;
+            background: white;
+            padding: 20px 20px;
+            border-radius:5px;
+        }
+        .d4_2{
+            border: solid 1px #DCE0E0;
+            border-radius:5px;
+            width: 520px;
+            height: 100px;
+            padding: 10px;
+            resize: none;"
+        }
+        .d1_next{
+            background-color: rgb(51, 122, 183);
+            border: none;
+            color: white;
+            padding: 10px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="nav_info">
+    <div class="house_info">
+        <div class="nav_text">
+            <h2>填写个人基本信息</h2>
+        </div>
+    </div>
+</div>
+
+<div class="nav_line" style="width: 100%; left: 0%; max-width: 100%;"></div>
+
+<div class="d4" align="center">
+    <div>
+        <div class="d4_1">选择头像</div>
+        <div id="upPictures" class="dropzone"></div>
+        <input type="hidden" id="picturesUrl"/>
+    </div>
+
+    <div class="d4_1">请输入你的姓名</div>
+    <textarea class="d4_2" id="user_name"></textarea>
+
+    <div class="d4_4">请输入你的性别</div>
+    <textarea class="d4_2" id="user_sex"></textarea>
+
+    <div class="d4_4">请输入你的邮件</div>
+    <textarea class="d4_2" id="user_email"></textarea>
+
+    <div class="d4_4">请输入你手机号码</div>
+    <textarea class="d4_2" id="user_phone"></textarea>
+
+    <div class="d4_4">请输入你的居住地址</div>
+    <textarea class="d4_2" id="user_address"></textarea>
+</div>
+
+<div  align="center">
+    <div>
+        <div >
+            <div >
+                <button class="d1_next" type="submit" onclick="addUserInfo()">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="jquery/jquery-2.1.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="dropzone/dropzone.min.js"></script>
+<script>
+    Dropzone.options.upPictures = {
+        url: "upload", // 文件提交地址
+        method: "post",  // 也可用put
+        paramName: "dropzFile", // 默认为file
+        maxFiles: 6,// 一次性上传的文件数量上限
+        maxFilesize: 10, // 文件大小，单位：MB
+        acceptedFiles: ".jpg,.gif,.png,.jpeg,.txt,.doc,.docx", // 上传的类型
+        //uploadMultiple:true,//指明是否允许 Dropzone 一次提交多个文件。默认为 false。如果设为 true，则相当于 HTML 表单添加 multiple 属性
+        addRemoveLinks: true,
+        parallelUploads: 1,// 一次上传的文件数量
+        //previewsContainer:"#preview", // 上传图片的预览窗口
+        dictDefaultMessage: '拖动照片至此或者点击上传照片',
+        dictMaxFilesExceeded: "您最多只能上传6个文件！",
+        dictResponseError: '文件上传失败!',
+        dictInvalidFileType: "文件类型只能是*.jpg,*.gif,*.png,*.jpeg,.txt,.doc,.docx。",
+        dictFallbackMessage: "浏览器不受支持",
+        dictFileTooBig: "文件过大上传文件最大支持.",
+        dictRemoveLinks: "删除",
+        dictCancelUpload: "取消",
+        init: function () {
+            this.on("addedfile", function (file) {
+                // 上传文件时触发的事件
+            });
+            this.on("success", function (file, data) {
+                // 上传成功触发的事件
+
+            });
+            this.on("error", function (file, data) {
+                // 上传失败触发的事件
+                console.error(data);
+                console.log(file);
+            });
+            this.on("removedfile", function (file) {
+                // 删除文件时触发的方法
+                $.ajax({
+                    //请求方式
+                    type : "POST",
+                    //请求的媒体类型
+                    contentType: "application/json;charset=UTF-8",
+                    //接受数据类型
+                    dataType:"json",
+                    //请求地址
+                    url : "http://localhost:8080//pictureDelete",
+                    //数据，json字符串
+                    data : JSON.stringify({
+                        "picture":$("#picturesUrl").val()
+                    })
+                })
+            });
+        }
+    }
+</script>
+<script>
+    var user_name;
+    var user_sex;
+    var user_email;
+    var user_phone;
+    var user_address;
+    function initPage(){
+        //1.从后台的listAllUserInfo接口获取数据
+        $.ajax({
+            //请求地址
+            url : "http://localhost:8080//selectUserInfoById",
+            //请求方式
+            type : "GET",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //数据，json字符串
+            /* data : JSON.stringify({
+                 "adminid":id
+             }),*/
+            //请求成功
+            success : function(result) {
+                $("#user_name").val(result.user_name);
+                $("#user_sex").val(result.user_sex);
+                $("#user_email").val(result.user_email);
+                $("#user_phone").val(result.user_phone);
+                $("#user_address").val(result.user_address);
+                user_name=result.user_name;
+                user_sex=result.user_sex;
+                user_email=result.user_email;
+                user_phone=result.user_phone;
+                user_address=result.user_address;
+            },
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+    initPage();
+
+    function addUserInfo() {
+        $.ajax({
+            //请求方式
+            type : "POST",
+            //请求的媒体类型
+            contentType: "application/json;charset=UTF-8",
+            //接受数据类型
+            dataType:"json",
+            //请求地址
+            url : "http://localhost:8080//addUserInfo",
+            //数据，json字符串
+            data : JSON.stringify(
+                {
+                    "user_avatar":$("#picturesUrl").val(),
+                    "user_name":$("#user_name").val(),
+                    "user_sex":$("#user_sex").val(),
+                    "user_email":$("#user_email").val(),
+                    "user_phone":$("#user_phone").val(),
+                    "user_address":$("#user_address").val()
+                }
+            ),
+            //请求成功
+            success : function(result) {
+                console.log(result);
+                if(result){
+                    window.location.href="userinfo.html"
+                }
+            },
+            //请求失败，包含具体的错误信息
+            error : function(e){
+                console.log(e.status);
+                console.log(e.responseText);
+            }
+        });
+    }
+</script>
+</body>
+</html>

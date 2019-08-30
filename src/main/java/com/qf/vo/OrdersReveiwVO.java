@@ -10,6 +10,23 @@ public class OrdersReveiwVO {
     Date createtime;
     String h_name;
     String address;
+    String order_number;
+    int status;
+    public String getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(String order_number) {
+        this.order_number = order_number;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public String getUser_name() {
         return user_name;
@@ -77,6 +94,8 @@ public class OrdersReveiwVO {
                 ", createtime=" + createtime +
                 ", h_name='" + h_name + '\'' +
                 ", address='" + address + '\'' +
+                ", order_number='" + order_number + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

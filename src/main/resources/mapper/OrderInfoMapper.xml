@@ -12,7 +12,12 @@
 
     <!--生成订单信息(添加订单信息)-->
     <insert id="addOrderInfo" parameterType="com.qf.pojo.ToOrderInfo" >
-        insert into orders(orderid,userid,houseid,checkin_data,checkout_data,total_price,createtime) values (DEFAULT,#{userid},#{houseid},#{checkin_data},#{checkout_data},#{total_price},#{createtime})
+        insert into orders(orderid,userid,houseid,checkin_data,checkout_data,total_price,createtime,order_number,status) values (DEFAULT,#{userid},#{houseid},#{checkin_data},#{checkout_data},#{total_price},#{createtime},#{order_number},0)
     </insert>
+
+    <!--付款完成后修改订单状态-->
+    <update id="updateOrderInof" parameterType="String">
+        update orders set status=1 where order_number=#{order_number}
+    </update>
 
 </mapper>

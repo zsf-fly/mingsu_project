@@ -4,6 +4,7 @@ import com.qf.dto.LoginInfo;
 import com.qf.pojo.Administrator;
 import com.qf.pojo.Menu;
 import com.qf.pojo.UserAccount;
+import com.qf.pojo.UserInfo;
 import com.qf.service.AdministratorService;
 import com.qf.service.AliyunSmsService;
 import com.qf.service.MenuService;
@@ -83,8 +84,47 @@ public class UserInfoController {
         return aliyunSmsService.getPhonemsg(phone);
     }
 
+    /**
+     * 后台展示用户信息
+     * @param userid
+     * @return
+     */
     @RequestMapping("selectUserInfo")
     public Object selectUserInfo(@RequestParam int userid){
         return userInfoService.selectUserInfo(userid);
+    }
+
+    /**
+     * 前台查询用户个人信息
+     * @param httpSession
+     * @return
+     */
+    @RequestMapping("selectUserInfoById")
+    public Object selectUserInfoById(@RequestParam(required = false)Integer userid, HttpSession httpSession){
+        UserAccount userAccount = (UserAccount) httpSession.getAttribute("userAccount");
+        System.out.println(userAccount);
+        if (userAccount!=null){
+            int id = userAccount.getUserid();
+            UserInfo userInfo = userInfoService.selectUserInfoById(id);
+            if (userInfo==null){
+                return 0;
+            }
+            return userInfo;
+        }else {
+            return -1;
+        }
+    }
+
+    @RequestMapping("addUserInfo")
+    public Object addUserInfo(@RequestBody(required = false)UserInfo userInfo,HttpSession httpSession){
+        UserAccount userAccount = (UserAccount) httpSession.getAttribute("userAccount");
+        int userid = userAccount.getUserid();
+        userInfo.setUserid(userid);
+        UserInfo userInfo1 = userInfoService.selectUserInfoById(userid);
+        if (userInfo1==null){
+            return userInfoService.addUserInfo(userInfo)>0;
+        }else {
+            return userInfoService.updateUserInfo(userInfo)>0;
+        }
     }
 }

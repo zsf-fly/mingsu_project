@@ -4,16 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qf.dao.HouseInfoMapper">
 
-    <!--首页展示房源信息-->
-    <select id="getHouseInfo" resultType="com.qf.vo.HouseInfoVO" parameterType="com.qf.dto.SearchHouseInfoDTO" >
-      select a.houseid,a.h_price,a.h_type,b.sketch,c.picture,d.city from houses a,house_details b,house_picture
-      c,house_address d where a.houseid=b.houseid and a.houseid=c.houseid and c.houseid=d.houseid
-        <if test="city != null and city != ''">
-            and city = #{city}
-        </if>
-        <if test="h_type !=null and h_type!=''">
-            and h_type = #{h_type}
-        </if>
+    <resultMap id="houseInfoMap" type="com.qf.vo.HouseInfoVO">
+        <id column="houseid" property="houseid"></id>
+        <result column="h_price" property="h_price"></result>
+        <result column="sketch" property="sketch"></result>
+        <result column="city" property="city"></result>
+        <result column="h_type" property="h_type"></result>
+        <collection property="housePictures" ofType="com.qf.pojo.HousePicture">
+            <id column="hpid" property="hpid"></id>
+            <result column="picture" property="picture"></result>
+        </collection>
+    </resultMap>
+    <!--首页展示房源信息(包含查询)-->
+    <select id="getHouseInfo" resultMap="houseInfoMap" parameterType="com.qf.dto.SearchHouseInfoDTO" >
+      select a.houseid,a.h_price,a.h_type,b.sketch,c.picture,d.city from houses a,house_details b,house_picture c,
+      house_address d where a.houseid=b.houseid and a.houseid=c.houseid and a.houseid=d.houseid
+      <if test="city != null and city != ''">
+          and d.city=#{city}
+      </if>
+      <if test="h_type !=null and h_type!=''">
+          and a.h_type = #{h_type}
+      </if>
     </select>
-
 </mapper>

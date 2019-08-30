@@ -28,6 +28,15 @@
         <div class="navbar-header">
             <div><a class="navbar-brand" style="font-size:32px;" href="#">名宿管理系统</a></div>
         </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li style="padding-top:8px;">
+                    <div class="btn-group">
+                        <a href="login.html"><i class="glyphicon glyphicon-off">退出系统</i></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -50,6 +59,7 @@
                                 <th>员工姓名</th>
                                 <th>工作证号</th>
                                 <th>手机号码</th>
+                                <th width="46">操作</th>
                             </tr>
                             </thead>
                             <tbody id="dataTable">
@@ -80,21 +90,28 @@
             url : "http://localhost:8080//getAdminInfo",
             //请求成功
             success : function(result) {
-                alert(result);
-                //2.将数据填充到table中
-                $(result).each(function(index,item) {
-                    console.log(item);
-                    var trStr = "<tr id="+item.adminid+">";
-                    //获取id并拼接
-                    trStr += "<td class='hidden'>" + item.adminid + "</td>";
-                    trStr += "<td>" + item.admin_name + "</td>";
-                    trStr += "<td>" + item.work_number + "</td>";
-                    trStr += "<td>" + item.admin_phone + "</td>";
-                    trStr += "</tr>";
-                    //$("#dataTable").append(trStr);
-                    str_info=str_info+trStr;
-                });
-                $("#dataTable").html(str_info)
+                //alert(result);
+                if (result!=null){
+                    //2.将数据填充到table中
+                    $(result).each(function(index,item) {
+                        console.log(item);
+                        var trStr = "<tr id="+item.adminid+">";
+                        //获取id并拼接
+                        trStr += "<td class='hidden'>" + item.adminid + "</td>";
+                        trStr += "<td>" + item.admin_name + "</td>";
+                        trStr += "<td>" + item.work_number + "</td>";
+                        trStr += "<td>" + item.admin_phone + "</td>";
+                        trStr+="<td>";
+                        trStr+="<button type=\"button\" class='btn btn-primary btn-xs'><i class=' glyphicon glyphicon-pencil' onclick=\"changeInfo("+item.adminid+")\"></i></button>&nbsp;"
+                        trStr+="</td>";
+                        trStr += "</tr>";
+                        //$("#dataTable").append(trStr);
+                        str_info=str_info+trStr;
+                    });
+                    $("#dataTable").html(str_info)
+                } else {
+                    window.location.href="reg_adminInfo.html";
+                }
             },
             //请求失败，包含具体的错误信息
             error : function(e){
@@ -104,6 +121,11 @@
             }
         });
     });
+
+    //修改信息
+    function changeInfo(adminid) {
+        window.location.href="updateManage.html?adminid="+adminid
+    }
 </script>
 <script type="text/javascript">
     $("#tre").load("menu.html");
